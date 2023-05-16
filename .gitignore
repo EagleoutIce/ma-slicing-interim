@@ -1,0 +1,5 @@
+build/
+.vscode/
+.idea/
+*_ma-*.tex
+!source_ma-*.tex
