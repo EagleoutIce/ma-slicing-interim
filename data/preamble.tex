@@ -52,23 +52,11 @@
 \hypersetup{colorlinks=false}
 \def\rhead#1{\hfill\textcolor{shadeA}{\sbfamily#1}}
 
-\newsavebox\parallellogo
-\setbox\parallellogo=\hbox{\tikzpicture[xscale=1.25] % stretch me
-\foreach[count=\y from 0] \line in {0,.25,.5,.25,0,.25,.5,.25,0} {
-\scope[shift={(\line,-\y)}]
-  \foreach\i in {1,3,...,14} {
-    \fill (\i,0) rectangle ++(1,1);
-    % bars
-    \draw[gray,very thick] (\i,0) -- ++(0,1) (\i+1,0) -- ++(0,1);
-  }
-  \draw[gray,very thick] (0,0) rectangle ++(15,1);
-\endscope
-}
-\endtikzpicture}
 % no depth!
-\title{\texorpdfstring{\smash{\resizebox*!{\ht\strutbox}{\copy\parallellogo}}~}{}GNU parallel}
-\subtitle{Parallelizing and\texorpdfstring{\\}{\space}Distributing programs with the Shell}
-\institute{\textsc{ccpdp}, Universität Ulm}
+\title{Constructing a Static Program Slicer}
+\subtitle{Specifically for R Programs}
+% \subtitle{Parallelizing and\texorpdfstring{\\}{\space}Distributing programs with the Shell}
+% \institute{\textsc{ccpdp}, Universität Ulm}
 
 \author[F.~Sihler]{Florian Sihler}
 \email{florian.sihler@uni-ulm.de}
