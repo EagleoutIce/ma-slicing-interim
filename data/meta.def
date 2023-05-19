@@ -1,0 +1,12 @@
+% no depth!
+\title{Constructing a Static Program Slicer}
+\subtitle{Specifically for R Programs}
+% \subtitle{Parallelizing and\texorpdfstring{\\}{\space}Distributing programs with the Shell}
+% \institute{\textsc{ccpdp}, Universität Ulm}
+
+\author[F.~Sihler]{Florian Sihler}
+\email{florian.sihler@uni-ulm.de}
+
+\date{\today}
+\outro{Ulm \today}
+% \license[]{All rights reserved}
