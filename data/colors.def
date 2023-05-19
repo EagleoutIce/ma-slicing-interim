@@ -1,3 +1,4 @@
+\usepackage{color-palettes}
 \DefinePalette{RSlicing}
 {Red,rötlich: RGB(93, 46, 70)}
 {Blau,bläulich: RGB(22, 105, 122)}
