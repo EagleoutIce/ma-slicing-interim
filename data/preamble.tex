@@ -11,7 +11,8 @@
     lecture-bibliography={biber,style=numeric-comp},%
     util, lithie-boxes={germanenv,koma,overwrite},%
     lithie-task-boxes={cpalette}, lecture-links={patchurl},%
-    lecture-registers={disable}% would interfere with beamer
+    lecture-registers={disable},% would interfere with beamer
+    beamer-latex-pdfpc-notes={disablemarkdown=false,showannot=false}
 ]{lithie-util}
 \usepackage{lecture-personal-extra-units}
 
@@ -61,3 +62,9 @@
 %   \printbibliography[title={},category={@hide}]%
 % \end{multicols}\vspace*{-1.5\baselineskip}
 % }
+
+\def\posttitlepage{%
+  \begin{tikzpicture}[overlay,remember picture]%
+    \node[below left=3mm] at(current page.north east) {\includegraphics[height=1.5cm]{logos/flowR-soft.pdf}};
+  \end{tikzpicture}%
+}

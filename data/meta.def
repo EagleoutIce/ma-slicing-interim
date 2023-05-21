@@ -7,6 +7,8 @@
 \author[F.~Sihler]{Florian Sihler}
 \email{florian.sihler@uni-ulm.de}
 
+\setfootmarker{Interim --- Program Slicing}
+
 \date{\today}
 \outro{Ulm \today}
 % \license[]{All rights reserved}
