@@ -1,0 +1,248 @@
+\newsavebox\ArchitectureBox
+\setbox\ArchitectureBox=\hbox{\tikz[baseline={([yshift=-2mm]current bounding box.center)},scale=1.35]{\draw[rounded corners=.5mm,fill=btdm@background,opacity=.8]
+(0,0) -| ++(-6mm,8mm) -- ++(4mm,0) |- ++(2mm,-2mm) coordinate (@) -- cycle
+([yshift=-1mm]@) -- ++(0,1mm) -- ++(-2mm,2mm) -- ++(-1mm,0);}}
+\newsavebox\RLogo
+\setbox\RLogo=\hbox{\tikz[x=.05pt,y=-.05pt]{\draw[even odd rule,fill=btdm@background] (361.453,485.9370) .. controls (162.329,485.9370) and
+   (0.906,377.8280) .. (0.906,244.4690) .. controls (0.906,111.1090) and
+   (162.329,3.0000) .. (361.453,3.0000) .. controls (560.578,3.0000) and
+   (722.,111.1090) .. (722.,244.4690) .. controls (722.,377.8280) and
+   (560.578,485.9370) .. (361.453,485.9370) -- cycle(416.641,97.4060) ..
+   controls (265.289,97.4060) and (142.594,171.3140) .. (142.594,262.4840) ..
+   controls (142.594,353.6540) and (265.289,427.5620) .. (416.641,427.5620) ..
+   controls (567.992,427.5620) and (679.687,377.0330) .. (679.687,262.4840) ..
+   controls (679.687,147.9710) and (567.992,97.4060) .. (416.641,97.4060) --
+   cycle;
+\draw[even odd rule,fill=btdm@background,line join=round] (550.,377.0000) .. controls (550.,377.0000) and
+   (571.822,383.5850) .. (584.5,390.0000) .. controls (588.899,392.2260) and
+   (596.51,396.6680) .. (602.,402.5000) .. controls (607.378,408.2120) and
+   (610.,414.0000) .. (610.,414.0000) -- (696.,559.0000) --
+   (557.,559.0620) -- (492.,437.0000) .. controls (492.,437.0000) and
+   (478.69,414.1310) .. (470.5,407.5000) .. controls (463.668,401.9690) and
+   (460.755,400.0000) .. (454.,400.0000) .. controls (449.298,400.0000) and
+   (420.974,400.0000) .. (420.974,400.0000) -- (421.,558.9740) --
+   (298.,559.0260) -- (298.,152.9380) -- (545.,152.9380) .. controls
+   (545.,152.9380) and (657.5,154.9670) .. (657.5,262.0000) .. controls
+   (657.5,369.0330) and (550.,377.0000) .. (550.,377.0000) --
+   cycle(496.5,241.0240) -- (422.037,240.9760) -- (422.,310.0260) --
+   (496.5,310.0020) .. controls (496.5,310.0020) and (531.,309.8950) ..
+   (531.,274.8770) .. controls (531.,239.1550) and (496.5,241.0240) ..
+   (496.5,241.0240) -- cycle;}%
+}
+\newsavebox\FirstAst
+\setbox\FirstAst=\hbox{\resizebox*!{1.25cm}{\begin{forest}
+   for tree={circle,draw,scale=1.65,fill=btdm@background}
+   [[[][,phantom]][[[][,phantom]][]]]
+\end{forest}}}
+\newsavebox\DataFlow
+\setbox\DataFlow=\hbox{\resizebox*!{1.25cm}{\color{lightgray!80!black}\begin{forest}
+   for tree={circle,draw=black,scale=1.65,fill=btdm@background}
+   [[[,name=a][,phantom]][,name=d[[,name=b][,phantom]][,name=c]]]
+   \draw[very thick,black,line cap=round] (a) to[bend right=25] (b) (b) to[bend right=25] (c) (c) to[bend right=25] (d);
+\end{forest}}}
+\newsavebox\Slicing
+\setbox\Slicing=\hbox{\resizebox*!{1.25cm}{\color{lightgray!80!black}\begin{forest}
+   for tree={circle,draw=black,scale=1.65,fill=btdm@background,opacity=.5}
+   [[[,name=a][,phantom]][,name=d[[,name=b,opacity=1,very thick][,phantom]][,name=c,opacity=1,very thick]]]
+   \draw[very thick,black,line cap=round,lightgray!80!black] (a) to[bend right=25] (b) (b) to[bend right=25] (c) (c) to[bend right=25] (d);
+\end{forest}}}
+\newsavebox\Overview
+\def\StoreOverview#1{%
+\setbox\Overview=\hbox{\begin{tikzpicture}[br/.style={fill=lightgray!25!btdm@background,minimum width=2.5cm,minimum height=1.5cm,signal,signal from=west,signal to=east,signal pointer angle=125},k/.style={below,font=\footnotesize,xshift=-.33mm,color=darkgray},m/.style={above,font=\scriptsize,xshift=-.33mm,color=gray},base/.style={opacity=.35},a/.style={base},b/.style={base},c/.style={base},d/.style={base},e/.style={base},f/.style={base},#1]
+   \scope[transparency group,a]
+   \node[br] (@) at (0,0) {};
+   \node (file) at (@) {\rotatebox{-5}{\usebox\ArchitectureBox}\llap{\T{.r\kern8pt}}};
+   \node[k] at (@.south) {Input File};
+   \endscope
+
+   \scope[transparency group,b]
+   \node[br,right=3mm] (@) at (@.east) {};
+   \node (r-conv) at (@) {\usebox\RLogo};
+   \node[k] at (@.south) {Parsing};
+   \endscope
+
+   \scope[transparency group,c]
+   \node[br,right=3mm] (@) at (@.east) {};
+   \node (first-ast) at (@) {\usebox\FirstAst};
+   \node[k] at (@.south) {Normalization};
+   \endscope
+
+   \scope[transparency group,d]
+   \node[br,right=3mm] (@) at (@.east) {};
+   \node (dataflow) at (@) {\usebox\DataFlow};
+   \node[k] at (@.south) {Dataflow};
+   \endscope
+
+   \scope[transparency group,e]
+   \node[br,right=3mm] (@) at (@.east) {};
+   \node (slicing) at (@) {\usebox\Slicing};
+   \node[k] at (@.south) {Slicing};
+   \endscope
+
+   \scope[transparency group,f]
+   \node[br,right=3mm] (@) at (@.east) {};
+   \node (export) at (@) {\rotatebox{-5}{\usebox\ArchitectureBox}\llap{\T{.r\kern8pt}}};
+   \node[k] at (@.south) {Output};
+   \endscope
+\end{tikzpicture}}}
+
+
+\section{Current State}
+\subsection{The Program}
+\begin{frame}{\insertsubsection}
+\centering\begin{tikzpicture}[br/.style={fill=lightgray!25!btdm@background,minimum width=2.5cm,minimum height=1.5cm,signal,signal from=west,signal to=east,signal pointer angle=125},k/.style={below,font=\footnotesize,xshift=-.33mm,color=darkgray},m/.style={above,font=\scriptsize,xshift=-.33mm,color=gray}]
+   \begin{uncoverenv}<2->
+      \node[br] (@) at (0,0) {};
+      \node (file) at (@) {\rotatebox{-5}{\usebox\ArchitectureBox}\llap{\T{.r\kern8pt}}};
+      \node[k] at (@.south) {Input File};
+   \end{uncoverenv}
+
+   \begin{uncoverenv}<3->
+      \node[br,right=3mm] (@) at (@.east) {};
+      \node (r-conv) at (@) {\usebox\RLogo};
+      \node[above right=-.5mm,scale=.8,font=\tiny,gray] at(r-conv.south west) {[R]};
+      \node[k] at (@.south) {Parsing};
+      \onslide<4->{\node[m] at (@.north) {\T{parse}\,\(\to\)\,XML};}
+   \end{uncoverenv}
+
+   \begin{uncoverenv}<5->
+      \node[br,right=3mm] (@) at (@.east) {};
+      \node (first-ast) at (@) {\usebox\FirstAst};
+      \node[k] at (@.south) {Normalization};
+      \onslide<6->{\node[m] at (@.north) {in TypeScript};}
+   \end{uncoverenv}
+
+   \begin{uncoverenv}<7->
+      \node[br,right=3mm] (@) at (@.east) {};
+      \node (dataflow) at (@) {\usebox\DataFlow};
+      \node[k] at (@.south) {Data-Flow};
+   \end{uncoverenv}
+
+   \begin{uncoverenv}<8->
+      \node[br,right=3mm] (@) at (@.east) {};
+      \node (slicing) at (@) {\usebox\Slicing};
+      \node[k] at (@.south) {Slicing};
+      \onslide<9->{\node[m] at (@.north) {Weiser~\cite{weiser_program_1984}};}
+   \end{uncoverenv}
+
+   \begin{uncoverenv}<10->
+      \node[br,right=3mm] (@) at (@.east) {};
+      \node (export) at (@) {\rotatebox{-5}{\usebox\ArchitectureBox}\llap{\T{.r\kern8pt}}};
+      \node[k] at (@.south) {Output};
+      \onslide<9->{\node[m] at (@.north) {Slice,~\ldots};}
+   \end{uncoverenv}
+\end{tikzpicture}
+\begin{tikzpicture}[overlay,remember picture]
+   \onslide<3->{\node[above left,yshift=\btdmfootheight,gray,font=\tiny] at (current page.south east) {[R]~\url{https://www.r-project.org/logo/}};}
+   \onslide<9->{\node[above right,yshift=\btdmfootheight,gray,font=\tiny] at(current page.south west) {\cite{weiser_program_1984}~\citeauthor{weiser_program_1984}, \citetitle{weiser_program_1984} (\citeyear{weiser_program_1984})};}
+\end{tikzpicture}
+\end{frame}
+
+
+
+\StoreOverview{b/.style={},c/.style={}}
+
+\newsavebox\LeftParseTree
+\newsavebox\RightParseTree
+
+\forestset{T/.style={for tree={font=\ttfamily,align=center,l sep=0pt,l sep-=5mm,child anchor=north}}}
+% \def\Highlight#1{\bfseries\large\color{btdm@primary}#1}
+
+\newsavebox\IfThenElseParseTree
+\begin{lrbox}{\IfThenElseParseTree}
+\begin{forest}
+   T, for tree={l sep=5mm,s sep=5mm}
+   [exprlist
+      [expr
+         [\Content{IF}{if}]
+         [\Content{(}{(}]
+         [expr
+            [\Content{NUM\_CONST}{TRUE}]
+         ]
+         [\Content{)}{)}]
+         [expr
+            [\Content{SYMBOL}{x}]
+         ]
+         [\Content{ELSE}{else}]
+         [expr
+            [\Content{SYMBOL}{y}]
+         ]
+      ]
+   ]
+\end{forest}
+\end{lrbox}
+
+\newsavebox\IfThenElseNormalized
+\tikzset{K/.style={midway,#1=3mm,font=\footnotesize}}
+\begin{lrbox}{\IfThenElseNormalized}
+\begin{forest}
+   T, for tree={l sep=5mm,s sep=5mm}
+   [exprlist
+      [\Content{if-then-else}{if (\ldots) \ldots~else \ldots}
+         [\Content{boolean}{TRUE (true)}, edge label={node[K=left] {condition}}]
+         [\Content{symbol}{x}, edge label={node[K=right] {then}}]
+         [\Content{symbol}{y}, edge label={node[K=right] {otherwise}}]
+      ]
+   ]
+\end{forest}
+\end{lrbox}
+
+\subsection{RQ1: Normalization \& Data-Flow}
+\begin{frame}{RQ1: Normalization}
+\vspace*{8mm}\begin{center}
+\begin{tikzpicture}
+   \onslide<2->{\node (@) at (0,0) {%
+      \scalebox{.6}{\usebox\IfThenElseParseTree}%
+   };
+   \node[above] at(@.north) {%
+      \footnotesize\bR{parse(text="if (TRUE) x else y")}
+   };}
+
+   \onslide<3->{\node[right=3cm] (@2) at (@.east) {\scalebox{.6}{\usebox\IfThenElseNormalized}};
+
+   \draw[-Kite,line cap=round] ([xshift=5mm]@.east|-@2.west) to[edge node={node[above] {\footnotesize\itshape normalized}}] ([xshift=-5mm]@2.west);
+   }
+\end{tikzpicture}\medskip
+\begin{itemize}
+   \itemsep3.5pt
+   \item<4-> Normalizing constants, namespacing, operators, \ldots
+   \item<5-> We use the \link{https://cran.r-project.org/doc/manuals/r-release/R-lang.pdf}{\say{R language definition}}\textsuperscript{\color{gray}\cite{RLang}} as a basis
+   % \item<6-> \link{https://roxygen2.r-lib.org/}{Roxygen2}, and comparable tools must be dealt with separately
+\end{itemize}
+\citeon<5->{RLang}
+% \begin{tabular}{p{.4\linewidth}>{\centering\arraybackslash}p{.4\linewidth}}
+%    \multicolumn{2}{l}{\onslide<2->{\footnotesize\bR{parse(text="if (TRUE) x else y")}}} \\
+%    \onslide<3->{\scalebox{.6}{\usebox\IfThenElseParseTree}} & \onslide<8->{\scalebox{.6}{\usebox\IfThenElseNormalized}} \\
+% \end{tabular}
+\end{center}%
+\begin{tikzpicture}[overlay,remember picture]
+   \onslide<1->{\node[below left=5mm,xshift=1mm,scale=.7] at(current page.north east) {\usebox\Overview};}
+\end{tikzpicture}%
+\note[itemize]{%
+\item TODO: Standard ist lange nicht vollständig
+}(1)%
+\end{frame}
+
+
+
+\StoreOverview{d/.style={}}
+\begin{frame}{RQ1: Data-Flow}
+TODO: wie viel?
+\begin{tikzpicture}[overlay,remember picture]
+   \onslide<1->{\node[below left=5mm,xshift=1mm,scale=.7] at(current page.north east) {\usebox\Overview};}
+\end{tikzpicture}%
+\note[itemize]{%
+\item TODO
+}(1)%
+\end{frame}
+
+\subsection{RQ2: Common Features}
+\begin{frame}{RQ2: Features}
+TODO: wie viel?
+\begin{tikzpicture}[overlay,remember picture]
+   \onslide<1->{\node[below left=5mm,xshift=1mm,scale=.7] at(current page.north east) {\usebox\Overview};}
+\end{tikzpicture}%
+\note[itemize]{%
+\item TODO
+}(1)%
+\end{frame}

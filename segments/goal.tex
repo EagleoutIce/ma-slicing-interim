@@ -54,7 +54,6 @@ cat("Product:", prod, "\n")
 }(1)%
 \end{frame}
 
-\def\Content#1#2{#1\\[-.8ex]\small\textit{#2}}
 \newsavebox\ParseTree
 
 \begin{lrbox}{\ParseTree}
@@ -118,10 +117,10 @@ cat("Product:", prod, "\n")
    \node[above right,yshift=-2mm,align=center,font=\footnotesize] at (@2.north west) {\bR{parse(text="x <- 4^3")}};
 }
 \only<12-13|handout:2>{
-   \node[FCite] at(current page.south west) {\cite{lang_codedepends_2018}: \citeauthor{lang_codedepends_2018}, \citetitle{lang_codedepends_2018} (\citeyear{lang_codedepends_2018})};
+   \node[FCite] at(current page.south west) {\cite{lang_codedepends_2018} \citeauthor{lang_codedepends_2018}, \citetitle{lang_codedepends_2018} (\citeyear{lang_codedepends_2018})};
 }
 \only<18-19|handout:4>{
-   \node[FCite] at(current page.south west) {\cite{weiser_program_1984}: \citeauthor{weiser_program_1984}, \citetitle{weiser_program_1984} (\citeyear{weiser_program_1984})};
+   \node[FCite] at(current page.south west) {\cite{weiser_program_1984} \citeauthor{weiser_program_1984}, \citetitle{weiser_program_1984} (\citeyear{weiser_program_1984})};
 }
 \end{tikzpicture}%
 \note[itemize]{%

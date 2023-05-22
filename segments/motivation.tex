@@ -13,10 +13,10 @@
 \end{tikzpicture}
 \begin{tikzpicture}[@O]
    \node[FCite] at(current page.south west) {%
-      \only<2->{\cite{pypl2023}: \link{https://pypl.github.io/PYPL.html}{https://pypl.github.io/}}%
-      \only<3->{\\\cite{rProjectJournal}: \link{https://journal.r-project.org/}{https://journal.r-project.org/}}%
-      \only<4->{\\\cite{archiveOracleAnnounces}: \link{https://web.archive.org/web/20120211034626/https://www.oracle.com/us/corporate/press/1515738}{https://www.oracle.com/us/corporate/press/1515738 [archived]}}
-      \only<5->{\\\cite{rProjectComprehensiveArchive}: \link{https://cran.r-project.org/}{https://cran.r-project.org/}}
+      \only<2->{\cite{pypl2023} \link{https://pypl.github.io/PYPL.html}{https://pypl.github.io/}}%
+      \only<3->{\\\cite{rProjectJournal} \link{https://journal.r-project.org/}{https://journal.r-project.org/}}%
+      \only<4->{\\\cite{archiveOracleAnnounces} \link{https://web.archive.org/web/20120211034626/https://www.oracle.com/us/corporate/press/1515738}{https://www.oracle.com/us/corporate/press/1515738 [archived]}}
+      \only<5->{\\\cite{rProjectComprehensiveArchive} \link{https://cran.r-project.org/}{https://cran.r-project.org/}}
    };
 \end{tikzpicture}\note[itemize]{%
 \item Rang 7 in PYPL (PopularitY of Programming Language) mit 4.34\%, hinter PHP mit 5.5\%; vor TypeScript mit 2.88\%. Top: Python mit 27.27\%
@@ -39,7 +39,7 @@
    \vspace*{-3mm}\begin{itemize}
       \itemsep10pt
       \item<2-> %\raisebox{-.248\height}{\includegraphics[height=1.5\baselineskip]{logos/RStudio-Logo-flat.pdf}}
-      RStudio IDE\quad \LinkMark{\link{https://posit.co/products/open-source/rstudio/}{posit.co}}
+      RStudio IDE\textsuperscript{\color{gray}\cite{RStudio}}\quad \LinkMark{\link{https://posit.co/products/open-source/rstudio/}{posit.co}}
       \begin{itemize}
          \item<3-> \Snode{rstudio-start}Syntax-highlighting and auto-completion
          \item<3-> Simple debugger
