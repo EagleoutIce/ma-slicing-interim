@@ -1,0 +1,75 @@
+\errorcontextlines99999
+\documentclass[landscape,english]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[active,tightpage]{preview}
+\usepackage{tikz,pgfplots,amssymb}
+\usepackage[main=english]{babel}
+\pgfplotsset{compat=1.18}
+\usetikzlibrary{arrows.meta} \usepgfplotslibrary{fillbetween}
+\def\PreviewBorder{0mm}
+\input{../data/colors.def}
+\input{../data/fonts.def}
+
+\def\DrawMinimum{0.000000001}
+
+% overwrite default so that we get 0 for unknown
+\def\YLimiter{1100}
+\pgfkeysdef{/pgfplots/table/@undefined column text}{0}%
+\pgfplotsset{
+   HistAxis/.style={
+      ymin=0, height=7.5cm,width=5cm, ymax=\YLimiter,%  xmax=1000,
+      xmin=-1, xmax=1, % plotted as density
+      xtick={-1,-0.5,0,0.5,1},
+      xticklabels={1,0.5,0,0.5,1},
+      x tick label style={font=\sffamily\footnotesize},
+      % axis on top,
+      xbar interval,
+      y tick label as interval = false,
+      y tick label style={font=\sffamily\footnotesize,yshift=1.75mm},
+      ymajorgrids=false, xmajorgrids=false,
+      scaled ticks=false,
+      ymajorticks=false,
+      axis lines=middle,
+      every inner x axis line/.append style={lgray,-},
+      every inner y axis line/.append style={lgray,-}
+   },
+   % column as #1
+   TableData/.style={
+      table/col sep=comma,
+      table/y={to},
+      table/x expr={\thisrow{#1}},
+      % do not draw too-close to 0-bars
+      restrict expr to domain={\thisrow{#1}}{\DrawMinimum:1}
+   },
+   % version for the other half of the plot
+   TableData'/.style={
+      TableData=#1,
+      table/x expr={-\thisrow{#1}},
+      restrict expr to domain={\thisrow{#1}}{\DrawMinimum:1}
+   },
+   PlotDraw/.style={
+      fill,#1,
+   }
+}
+
+
+\def\CranName{collected/cran-assignments.dat}
+\def\SocialName{collected/social-assignments.dat}
+\tikzset{plotTikz/.style={}}
+\pgfplotsset{plotAxis/.style={}}
+% #1 column index | #2 title | #3 in-axis suffix | #4 out-axis suffix
+\def\PlotForColumn#1#2#3#4{%
+\begin{tikzpicture}[line join=round,line cap=round,plotTikz]
+\begin{axis}[HistAxis,title style={at={(0.5,0)},anchor=north,yshift=-3mm},title={#2},plotAxis]
+\addplot+[PlotDraw={lightgray},forget plot] table [TableData={#1}] {\CranName};
+\addplot+[PlotDraw={paletteA}] table [TableData'={#1}] {\SocialName};
+#3
+\end{axis}#4
+\node[gray,yshift=2mm,below right] (@) at(current bounding box.south west) {\footnotesize\strut\textsf{user}};
+\node[gray,left] at (@.east-|current bounding box.south east) {\footnotesize\strut\textsf{package}};
+\end{tikzpicture}%
+}
+
+\def\EqCol{"="}
+\def\DEqCol{":="}

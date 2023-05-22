@@ -87,7 +87,7 @@
 \end{tikzpicture}}}
 
 
-\section{Current State}
+\section{First Results}
 \subsection{The Program}
 \begin{frame}{\insertsubsection}
 \centering\begin{tikzpicture}[br/.style={fill=lightgray!25!btdm@background,minimum width=2.5cm,minimum height=1.5cm,signal,signal from=west,signal to=east,signal pointer angle=125},k/.style={below,font=\footnotesize,xshift=-.33mm,color=darkgray},m/.style={above,font=\scriptsize,xshift=-.33mm,color=gray}]
@@ -237,12 +237,75 @@ TODO: wie viel?
 \end{frame}
 
 \subsection{RQ2: Common Features}
-\begin{frame}{RQ2: Features}
-TODO: wie viel?
+\begin{frame}[fragile,b]{RQ2: Features}
+   \vspace*{9mm}\begin{itemize}[<+(1)->]
+      \itemsep\medskipamount
+      \item<2-> There are many ways to modify data in R, like: \begin{itemize}
+         \item<3-> \bR{a <- 1}, \bR{a <<- 1}, \bR{a = 1}, \bR{1 -> a}, \bR{1 ->> a}
+         \item<4-> \bR{assign("a", 1)}, \bR{b <- "a"; assign(b, 1)}
+         \item<5-> \bR[morekeywords={[2]{setGeneric}}]{setGeneric("props", function(object) object)}
+      \end{itemize}
+      \item<6-> Environments and scopes can be changed manually.
+%       \solsetmintedstyle{plain}\lstfs{10}%
+% \begin{minted}[escapeinside={/*}{*/},aboveskip=0pt]{R}
+% /*\onslide<7->*/x <- new.env(); evalq(a <- 1, envir=x); evalq(a, envir=x)/*\onslide<1->*/
+% \end{minted}
+      \item<8-> Functions can be modified at will (and at any time):
+            \solsetmintedstyle{plain}\lstfs{10}%
+\begin{minted}[escapeinside={/*}{*/},aboveskip=0pt]{R}
+/*\onslide<9->*/f <- function(x) { y <- x * 3; y }
+/*\onslide<9->*/body(f)[[3]] <- quote(x)
+/*\onslide<9->*/f(2) # 2/*\onslide<1->*/
+\end{minted}
+      \item<10-> There are different class systems, variable length arguments, and more\ldots % like `...`
+   \end{itemize}
 \begin{tikzpicture}[overlay,remember picture]
    \onslide<1->{\node[below left=5mm,xshift=1mm,scale=.7] at(current page.north east) {\usebox\Overview};}
 \end{tikzpicture}%
 \note[itemize]{%
+\item TODO: Package versionen sind unbekannt/nicht angegeben,
+}(1)%
+\end{frame}
+
+\begin{frame}[fragile]{RQ2: Features\rhead{, II}}
+   \begin{itemize}
+      \item<2-> \textit{Assumption:} \say{UserRs write different code from package authors.}\bigskip
+      \begin{center}
+            \begin{tabular}{c@{\hspace*{3.5em}}c}
+               \onslide<3->{UseRs} & \onslide<3->{Package Authors} \medskip\\
+               \onslide<4->{published sources in social science} & \onslide<5->{top 500 CRAN packages} \\
+               \onslide<6->{\num{4230} files} & \onslide<7->{\num{25\,691} files}
+            \end{tabular}
+      \end{center}
+   \end{itemize}%
+\note[itemize]{%
 \item TODO
 }(1)%
+\end{frame}
+
+\begin{frame}[c]{RQ2: Features\rhead{, III}}
+   \centering
+   \onslide<2->{\includegraphics{statistics/stat-example.pdf}} [TODO: andere]
+\end{frame}
+
+\begin{frame}[c]{RQ2: Features\rhead{, IV}}
+   \centering
+   TODO: 2-3 interesting findings (meistgenutzte pakete,~\ldots)
+\end{frame}
+
+\begin{frame}[c]{RQ3: TODO}
+   \centering
+   TODO: kurz auf die gezeigten features eingehen.
+   Scopes machen wir indem jede Funktion erstmal einen Datenflussgraph kriegt, der dann bei jedem Aufruf neu gebunden werden kann. ebenso sind environment informationen teil dees datenflussgraphen
+   sowie: unsicherheit...
+\end{frame}
+
+\begin{frame}[c]{RQ4. TODO}
+   \centering
+   Steht noch aus.
+\end{frame}
+
+\section{Outlook}
+\begin{frame}{Kurze übersicht darüber, was noch gemacht werden muss}
+   [Zeitplan,~\ldots]
 \end{frame}

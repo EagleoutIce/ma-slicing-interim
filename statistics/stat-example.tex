@@ -1,0 +1,13 @@
+\input{def.tex}
+
+\def\CranName{collected/cran-assignments.dat}
+\def\SocialName{collected/social-assignments.dat}
+\tikzset{plotTikz/.style={opacity=.85,transparency group}}
+\pgfplotsset{plotAxis/.style={ymajorgrids=true,ymajorticks=true,ytick={100,500,1000},yticklabels={100,500,1\,000}}}
+
+% TODO: siunit detect text mode
+\begin{document}
+\preview
+\PlotForColumn{"<-"}{\(\leftarrow\)}{}{\draw[gray,Kite-,thin,line cap=round] ([xshift=1mm]current bounding box.north) to[out=280,in=110] ++(2mm,-5mm) node[below right,yshift=1mm,xshift=-1.5mm,font=\footnotesize] {max: >~5\,820};}%
+\endpreview
+\end{document}

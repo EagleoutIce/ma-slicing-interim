@@ -1,9 +1,10 @@
 \usepackage{color-palettes}
 \DefinePalette{RSlicing}
 {Red,rötlich: RGB(93, 46, 70)}
+{Red,rötlich: RGB(159, 79, 120)}
 {Blau,bläulich: RGB(22, 105, 122)}
 {Lila,lilafarben: RGB(93, 45, 108)}
-{Grün,grünlich: RGB(21, 150, 90)}
+% {Grün,grünlich: RGB(21, 150, 90)}
 \SetShadeContrast{51}
 \UsePalette{RSlicing}
 
