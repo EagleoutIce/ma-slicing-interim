@@ -1,0 +1,134 @@
+
+\section{Goal}
+\subsection{Program Slicing}
+\newsavebox\FinalSlicingStage
+\begin{frame}[fragile]{The Goal}
+\vspace*{-7.5mm}\lstfs{9}
+\null\hfill\begin{lrbox}\FinalSlicingStage
+\begin{tikzpicture}
+\begin{uncoverenv}<2->
+\node (@) at (0,0) {%
+\begin{minted}[deletekeywords={sum,prod},escapeinside={/*}{*/}]{R}
+sum  <- 0
+prod <- 1
+n    <- 10
+
+for (i in 1:(n-1)) {
+   sum  <- sum + i
+   prod <- prod * i
+}
+
+cat("Sum:", /*\T{\only<3->{\textbf}{sum}}*/, "\n")
+cat("Product:", prod, "\n")
+\end{minted}
+};
+\end{uncoverenv}
+
+\begin{uncoverenv}<4->
+   \node[right=2.5cm] (@2) at (@.east) {%
+\solsetmintedstyle{plain}
+\AnimateCode{onslide={o8:{7,5,4,3,1}}, first slide=4,handout={4/1}}
+\begin{minted}[deletekeywords={sum,prod},escapeinside={/*}{*/}]{R}
+sum  <- 0
+prod <- 1
+n    <- 10
+
+for (i in 1:(n-1)) {
+   sum  <- sum + i
+   prod <- prod * i
+}
+
+cat("Sum:", sum, "\n")
+cat("Product:", prod, "\n")
+\end{minted}
+\endAnimateCode
+   };
+\end{uncoverenv}
+\onslide<3->{
+   \draw[-Kite,line cap=round] ([xshift=5mm]@.east) to[edge node={node[above] {\footnotesize\T{slice(\solGet{linenumbers}{\footnotesize10}, \textbf{sum})}}}] ([xshift=-5mm]@2.west);
+}
+\end{tikzpicture}\end{lrbox}\usebox\FinalSlicingStage\hfill\null
+\global\setbox\FinalSlicingStage=\box\FinalSlicingStage
+\note[itemize]{%
+\item TODO
+}(1)%
+\end{frame}
+
+\def\Content#1#2{#1\\[-.8ex]\small\textit{#2}}
+\newsavebox\ParseTree
+
+\begin{lrbox}{\ParseTree}
+\begin{forest}
+   for tree={font=\ttfamily,align=center,l sep=0pt,l sep-=5mm}
+   [exprlist
+      [expr
+         [expr
+            [\Content{SYMBOL}{x}]
+         ]
+         [\Content{LEFT\_ASSIGN}{{\LeftArrow/\DoubleLeftArrow}}]
+         [expr
+            [expr
+               [\Content{NUM\_CONST}{4}]
+            ]
+            [\Content{\smash{\textasciicircum}}{{\textasciicircum/**}}]
+            [expr
+               [\Content{NUM\_CONST}{3}]
+            ]
+         ]
+      ]
+   ]
+\end{forest}
+\end{lrbox}
+
+\def\After#1{\quad\textcolor{gray}{\scriptsize#1}}
+\subsection{Program Slicing Requirements}
+\begin{frame}[c]{Requirements [TODO: more related on other slicing algorithms?]}
+\vspace*{\smallskip}\begin{enumerate}
+   \itemsep12pt
+   \item<2-> Control-flow information (AST) \onslide<11-|handout:2->{\After{partially}}\begin{onlyenv}<6-10|handout:1>
+         \begin{itemize}
+         \item<6-> R provides a \T{parse} function to parse R code
+         \item<7-> But the produced AST is inconsistent
+      \end{itemize}
+   \end{onlyenv}
+   \item<3-> Data-flow information \onslide<14-|handout:3->{\After{nothing}}\begin{onlyenv}<12-13|handout:2>
+      \begin{itemize}
+      \item<12-> There is \T{CodeDepends} which does not differentiate bodies
+      \item<13-> Otherwise: No existing data-flow analysis.
+   \end{itemize}
+\end{onlyenv}
+   \item<4-> Type information \onslide<17-|handout:4->{\After{nothing}}\begin{onlyenv}<15-16|handout:3>
+      \begin{itemize}
+      \item<15-> \T{type}s, \T{mode}s, and \T{storage.mode}s primarily at runtime
+      \item<16-> No existing static type inference
+   \end{itemize}
+\end{onlyenv}
+   \item<5-> Slicing algorithm \onslide<20-|handout:5->{\After{algorithm}}\begin{onlyenv}<18-19|handout:4>
+      \begin{itemize}
+      \item<18-> Basic slicing algorithm by \citeauthor{weiser_program_1984}~\cite{weiser_program_1984}% TODO:  inter-procedural
+      \item<19-> Slicing with data-flow is relatively simple
+   \end{itemize}
+\end{onlyenv}
+\end{enumerate}
+\begin{tikzpicture}[overlay,remember picture]
+   \node[below left=3mm] at(current page.north east) {\resizebox{.4\linewidth}!{\usebox\FinalSlicingStage}};
+\only<8-10|handout:1>{
+   \onslide<10->{\node[above left=3mm,yshift=\btdmfootheight] (@) at(current page.south east) {\scalebox{.625}{\usebox\ParseTree}};}
+   \onslide<9->{\node[above,align=center,xshift=-3mm,font=\footnotesize] (@2) at (@.north) {\bR{parse(text="x <<- 4**3")}};}
+   \node[above right,yshift=-2mm,align=center,font=\footnotesize] at (@2.north west) {\bR{parse(text="x <- 4^3")}};
+}
+\only<18-19|handout:4>{
+   \node[FCite] at(current page.south west) {\cite{weiser_program_1984}: \citeauthor{weiser_program_1984}, \citetitle{weiser_program_1984} (\citeyear{weiser_program_1984})};
+}
+\end{tikzpicture}%
+\note[itemize]{%
+\item TODO
+\item TODO: Otherwise: Nothing: no-one supoprts assigns etc.
+}(1)%
+\end{frame}
+
+\begin{frame}
+% TODO: LOGOS, TODO match flowr color and add as well
+TODO: other related work together where it is useful
+TODO: better color?
+\end{frame}

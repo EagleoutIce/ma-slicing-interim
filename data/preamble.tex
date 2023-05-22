@@ -1,20 +1,21 @@
 \errorcontextlines 999999
 \PassOptionsToPackage{table}{xcolor}
 \PassOptionsToPackage{defernumbers=true}{biblatex}
-\documentclass[aspectratio=169,usepdftitle=true,11pt,fleqn,english,c]{beamer}
+\documentclass[aspectratio=169,usepdftitle=true,11pt,fleqn,main=english,c]{beamer}
 
-\usepackage{babel}
+\usepackage[main=english]{babel}
 
 \usepackage[%
     sopra-listings={encoding,cpalette,fakeminted,highlights},%
-    sopra-tables, color-palettes={addons},%
+    color-palettes={addons},%
     lecture-bibliography={biber,style=numeric-comp},%
-    util, lithie-boxes={germanenv,koma,overwrite},%
-    lithie-task-boxes={cpalette}, lecture-links={patchurl},%
+    lecture-links={patchurl},%
     lecture-registers={disable},% would interfere with beamer
-    beamer-latex-pdfpc-notes={disablemarkdown=false,showannot=false}
+    beamer-latex-pdfpc-notes={disablemarkdown=false,showannot=false,}
 ]{lithie-util}
-\usepackage{lecture-personal-extra-units}
+\usepackage[detect-all,binary-units]{siunitx}
+
+\usepackage{multicol}
 
 \solsetmintedstyle{plain number}
 \solLoadLanguage{R}
@@ -27,7 +28,7 @@
   {keywordA: \@declaredcolor{sol@colors@lst@keywordA}\bfseries},%
 }
 
-\RestyleAlgo{plain}
+% \RestyleAlgo{plain}
 \lstset{lineskip=5.5pt}
 \lstfs{10}
 
@@ -43,7 +44,7 @@
 \SetAllLinkStyle{#1}
 \def\fillfont{\def\mdseries@sf{medium}\sffamily}
 
-\usepackage[glows]{tikzpingus}
+% \usepackage[glows]{tikzpingus}
 \usetikzlibrary{decorations.text,graphs}
 \hypersetup{colorlinks=false}
 \def\rhead#1{\hfill\textcolor{shadeA}{\sbfamily#1}}
@@ -52,19 +53,54 @@
 
 \addbibresource{./references.bib}
 
+\errorcontextlines999999
 % rank refs
-% \def\printBibCommand{%
-%   \renewcommand*{\bibfont}{\scriptsize}\labelnumberwidth2.85ex\relax
-%   \printbibliography[title={},notcategory={@hide}]%
-%   \renewcommand*{\bibfont}{\fontsize{4}{5}\selectfont}%
-%   \medskip\par\labelnumberwidth1.65ex\relax
-% \begin{multicols}{3}
-%   \printbibliography[title={},category={@hide}]%
-% \end{multicols}\vspace*{-1.5\baselineskip}
-% }
+\def\printBibCommand{%
+  \renewcommand*{\bibfont}{\scriptsize}\labelnumberwidth2.85ex\relax
+  \printbibliography[title={},heading=none,notcategory={@hide}]%
+ \renewcommand*{\bibfont}{\fontsize{4}{5}\selectfont}%
+  \medskip\par\labelnumberwidth1.65ex\relax
+ \begin{multicols}{2}
+   \printbibliography[title={},heading=none,category={@hide}]%
+ \end{multicols}\vspace*{-1.5\baselineskip}
+}
 
 \def\posttitlepage{%
   \begin{tikzpicture}[overlay,remember picture]%
     \node[below left=3mm] at(current page.north east) {\includegraphics[height=1.5cm]{logos/flowR-soft.pdf}};
   \end{tikzpicture}%
 }
+
+\def\HStrut{\vphantom{\{\}g}}
+% we do not nest inside tikzmarknode as this is not possible
+\def\Snode#1{\tikzmarknode{#1}\HStrut}
+
+\colorlet{FCiteGray}{gray!80!btdm@background}
+\tikzset{
+  FCite/.style={FCiteGray,font=\tiny\sffamily,above right,yshift=\btdmfootheight,align=left,execute at begin node={\colorlet{ul@line@color}{paletteA!40!btdm@background}}},
+  @O/.style={overlay, remember picture}
+}
+
+\input{data/link.tex}
+
+\usepackage{pbox}
+% title | where | date | cite
+\def\typesetBox#1#2#3#4{%
+    \pbox{7cm}{{\Large\bfseries#1}\rlap{\textsuperscript{\color{gray}\cite{#4}}}\\\color{gray}#2\hfill#3}%
+}
+
+\sectionbannerfalse
+
+% TODO: \raisebox{.025ex}{\guilsinglleft}\kern-.65ex---
+\def\LeftArrow{\text{\BeginAccSupp{method=escape,ActualText={<-}}\(\leftarrow\)\EndAccSupp{}}}
+\def\RightArrow{\text{\BeginAccSupp{method=escape,ActualText={<-}}\(\rightarrow\)\EndAccSupp{}}}
+\def\DoubleLeftArrow{\text{\BeginAccSupp{method=escape,ActualText={<<-}}\(\twoheadleftarrow\)\EndAccSupp{}}}
+\def\DoubleRightArrow{\text{\BeginAccSupp{method=escape,ActualText={<<-}}\(\twoheadrightarrow\)\EndAccSupp{}}}
+\lstset{add to literate=
+   {<-}{{{\!\LeftArrow\!}}}2
+   {<<-}{{{\!\DoubleLeftArrow\!}}}2
+   {->}{{{\!\RightArrow\!}}}2
+   {->>}{{{\!\DoubleRightArrow\!}}}2
+}
+
+\usepackage{forest}

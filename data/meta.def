@@ -5,9 +5,11 @@
 % \institute{\textsc{ccpdp}, Universität Ulm}
 
 \author[F.~Sihler]{Florian Sihler}
+% pdfpcnotes compatiblilty
+\AtBeginDocument{\def\@author{Florian Sihler}}
 \email{florian.sihler@uni-ulm.de}
 
-\setfootmarker{Interim --- Program Slicing}
+\setfootmarker{Interim --- Static Slicing}
 
 \date{\today}
 \outro{Ulm \today}

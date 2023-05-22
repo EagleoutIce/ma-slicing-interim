@@ -1,0 +1,23 @@
+\usepackage{contour}
+\PassOptionsToPackage{normalem}{ulem}
+\usepackage{ulem}
+% we do it manually to "fix" it, we do not need breaking
+\DeclareRobustCommand*\fancyul[2][\fancyulbackground]{%
+   \def\fancyul@background{#1}%
+   \def\ULdepth{1pt}%
+   \def\ULthickness{.1ex}%
+   \contourlength{.35pt}%
+   {\color{\fancyulcolor}\uline{\phantom{#2}}}\llap{\contour\fancyul@background{#2}}%
+}
+\makeatletter
+\def\fancyulbackground{btdm@background}%
+\colorlet{ul@line@color}{paletteA!70!btdm@background}
+\hypersetup{colorlinks=false,pdfborder=0 0 0}% just make sure :D
+\def\fancyulcolor{ul@line@color}%
+% we make the auto detection of the depth bigger
+\def\update@ul{\setbox\z@\hbox{{(j}}\let\ULdepth\p@\edef\ULthickness{\the\dimexpr.235\dp\z@}}
+% define a link macro that can be used with href and fancyul
+\DeclareRobustCommand*\link{\hyper@normalise\link@do}
+\def\link@do#1#2{\leavevmode\hskip-2\p@\href{#1}{\update@ul\hskip2\p@\fancyul{#2}}}% thinspace for some nicer padding
+\DeclareRobustCommand*\hlink{\hyper@normalise\hlink@do}
+\def\hlink@do#1#2{\leavevmode\hskip-2\p@\hyperlink{#1}{\update@ul\hskip2\p@\fancyul{#2}}}%
