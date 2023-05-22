@@ -38,14 +38,14 @@
 \begin{frame}[t]{Existing (Analysis) Support for R}
    \vspace*{-3mm}\begin{itemize}
       \itemsep10pt
-      \item<2-> [CITE CITE CITE languageserver and code depends]%\raisebox{-.248\height}{\includegraphics[height=1.5\baselineskip]{logos/RStudio-Logo-flat.pdf}}
+      \item<2-> %\raisebox{-.248\height}{\includegraphics[height=1.5\baselineskip]{logos/RStudio-Logo-flat.pdf}}
       RStudio IDE\quad \LinkMark{\link{https://posit.co/products/open-source/rstudio/}{posit.co}}
       \begin{itemize}
          \item<3-> \Snode{rstudio-start}Syntax-highlighting and auto-completion
          \item<3-> Simple debugger
          \item<3-> \only<11-|handout:2>{\expandafter\Out}{Refactorings (rename, extract functions and variables)}\Snode{rstudio-end}
       \end{itemize}
-      \item<4-> R~languageserver\quad \LinkMark{\link{https://github.com/REditorSupport/languageserver/}{github.com/REditorSupport}}\begin{itemize}
+      \item<4-> R~language~server\quad \LinkMark{\link{https://github.com/REditorSupport/languageserver/}{github.com/REditorSupport}}\begin{itemize}
          \item<5-> Syntax-highlighting and auto-completion
          \item<5-> \Snode{r-lang-start}\only<12-|handout:2>{\expandafter\Out}{Reference tracing} % (wrong, uses XPath-Expressions)
          \item<5-> \only<12-|handout:2>{\expandafter\Out}{Refactorings (rename)}\Snode{r-lang-end} % (uses XPath-Expressions)
@@ -62,7 +62,7 @@
 \end{itemize}
 \column{.6\linewidth}
 \begin{itemize}[<+(1)->]
-   \item<8-> CodeDepends\quad \LinkMark{\link{https://github.com/duncantl/CodeDepends}{github.com/duncantl/CodeDepends}} \begin{itemize}
+   \item<8-> CodeDepends\textsuperscript{\color{gray}\cite{lang_codedepends_2018}}\quad \LinkMark{\link{https://github.com/duncantl/CodeDepends}{github.com/duncantl/CodeDepends}} \begin{itemize}
       \item<9-> \only<14-|handout:2>{\expandafter\Out}{Dependency analysis}\Snode{dep-analysis}
       \item<9-> Creation of call-graphs
       \item<9-> \only<15-|handout:2>{\expandafter\Out}{Classification of tasks}\Snode{classification}
@@ -89,6 +89,7 @@
 \end{columns}
 \note[itemize]{%
 \item RStudio von posit (hauptsächlich in Java/C++)
+\item TODO: es gibt auch andere kleinere wie reformatter, rclean, ... optimizer rco...
 }(4)%
    % optimizr, tidyverse, RDocumentation, CodeDepends/CodeTools, R language server
 \end{frame}
