@@ -30,7 +30,7 @@
 
 \def\LinkMark#1{\textcolor{gray}{\scriptsize#1}}
 %\def\Rect#1#2{\draw[rounded corners,gray] ([shift={(-.5mm,.5mm)}]#1.north west) rectangle ([shift={(.5mm,-.5mm)}]#2.south east);}
-\newcommand\BraceRight[4][2mm]{\draw[line cap=round, gray,decorate,decoration={brace}] ([shift={(#1,.5mm)}]#2.north west-|#3.east) to[edge node={node[right=1mm,font=\small] {#4}}] ([shift={(#1,-.5mm)}]#3.south east);}
+\newcommand\BraceRight[4][2mm]{\draw[line cap=round, gray,decorate,decoration={brace}] ([shift={(#1,.5mm)}]#2.north west-|#3.east) to[edge node={node[right=1mm,font=\small,align=left] {#4}}] ([shift={(#1,-.5mm)}]#3.south east);}
 \newcommand\BraceBelow[4][.5mm]{\draw[line cap=round, gray,decorate,decoration={brace,mirror}] ([shift={(-.5mm,-#1)}]#2.south west) to[edge node={node[below=1mm,font=\small] {#4}}] ([shift={(.5mm,-#1)}]#3.south east);}
 \def\Arrow#1#2{\draw[Kite-,line cap=round,gray,font=\small] ([xshift=2mm]#1.east) -- ++(5mm,0) node[right=1mm] {#2};}
 \def\Out#1{{\color{lightgray}\sout{#1}}}
@@ -74,7 +74,7 @@
    % \BraceRight{rstudio-start}{rstudio-end}{}
    \onslide<10-|handout:2>{\Arrow{rstudio-end}{Often wrong (simple heuristics)}}
    \onslide<12-|handout:2>{
-      \BraceRight[3.1cm]{r-lang-start}{r-lang-end}{Based on XPath-expressions}
+      \BraceRight[3.1cm]{r-lang-start}{r-lang-end}{Often wrong\\Based on XPath-expressions}
    }
    \onslide<13-|handout:2>{
       \BraceBelow{lintr-start}{lintr-end}{XPath-expressions, packages}
