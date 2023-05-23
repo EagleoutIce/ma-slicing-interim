@@ -1,0 +1,13 @@
+\input{def.tex}
+
+\def\CranName{collected/cran-assignments.dat}
+\def\SocialName{collected/social-assignments.dat}
+\tikzset{plotTikz/.style={opacity=.85,transparency group}}
+\pgfplotsset{plotAxis/.style={ymajorgrids=true,ymajorticks=true,ytick={0.1,0.5,1.0},yticklabels={0.1,0.5,1.0}}}
+
+% TODO: siunit detect text mode
+\begin{document}
+\preview
+~\PlotForColumn{\EqCol}{\(=\)}{}{}%
+\endpreview
+\end{document}

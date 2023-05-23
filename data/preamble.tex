@@ -47,7 +47,7 @@
 \SetAllLinkStyle{#1}
 \def\fillfont{\def\mdseries@sf{medium}\sffamily}
 
-% \usepackage[glows]{tikzpingus}
+\usepackage[glows]{tikzpingus}
 \usetikzlibrary{decorations.text,graphs}
 \hypersetup{colorlinks=false}
 \def\rhead#1{\textcolor{shadeA}{\bfseries#1}}
@@ -107,6 +107,7 @@
 }
 
 
-\def\Content#1#2{#1\\[-.6ex]\small\textit{\color{gray}#2}}
+\usepackage{relsize}
+\def\Content#1#2{#1\\[-.6ex]\smaller\textit{\color{gray}#2}}
 
 \usepackage{forest}

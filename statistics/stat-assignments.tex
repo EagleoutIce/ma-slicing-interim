@@ -12,5 +12,11 @@
 \draw[gray,Kite-,thin,line cap=round] ([xshift=-2mm]current bounding box.north) to[out=270,in=20] ++(-2.5mm,-5mm) node[below left,yshift=1mm,font=\scriptsize] {\textasciitilde7};
 \draw[gray,Kite-,thin,line cap=round] ([xshift=2mm]current bounding box.north) to[out=270,in=160] ++(2.5mm,-5mm) node[below right,xshift=-1mm,yshift=1mm,font=\scriptsize] {\textasciitilde347};
 }%
+\pgfplotsset{plotAxis/.style={ymajorgrids=true,ymajorticks=true,ytick={0.1,0.5,1.0},yticklabels={0.1,0.5,1.0}}}%
+~\PlotForColumn{"<<-"}{\(\twoheadleftarrow\)}{}{}%
+~\PlotForColumn{\EqCol}{\(=\)}{}{}\bigskip\\%
+~\PlotForColumn{"->"}{\(\rightarrow\)}{}{}%
+~\PlotForColumn{"->>"}{\(\twoheadrightarrow\)}{}{}%
+~\PlotForColumn{\DEqCol}{\(:=\)}{}{}%
 \endpreview
 \end{document}
