@@ -36,8 +36,8 @@
 \def\Out#1{{\color{lightgray}\sout{#1}}}
 
 \begin{frame}[t]{Existing (Analysis) Support for R}
-   \vspace*{-3mm}\begin{itemize}
-      \itemsep10pt
+   \begin{itemize}
+      \itemsep14.5pt
       \item<2-> %\raisebox{-.248\height}{\includegraphics[height=1.5\baselineskip]{logos/RStudio-Logo-flat.pdf}}
       RStudio IDE\textsuperscript{\color{gray}\cite{RStudio}}\quad \LinkMark{\link{https://posit.co/products/open-source/rstudio/}{posit.co}}
       \begin{itemize}
@@ -55,8 +55,7 @@
 \column{.4\linewidth}
 \begin{itemize}[<+(1)->]
    \item<6-> \T{\{}lintr\T{\}}\quad \LinkMark{\link{https://github.com/r-lib/lintr}{github.com/r-lib/lintr}} \begin{itemize}
-      \item<7-> Style checker
-      \item<7-> Syntax errors
+      \item<7-> Style \& syntax errors
       \item<7-> \Snode{lintr-start}\only<13-|handout:2>{\expandafter\Out}{Potential semantic errors}\Snode{lintr-end}
    \end{itemize}
 \end{itemize}
@@ -65,7 +64,7 @@
    \item<8-> CodeDepends\textsuperscript{\color{gray}\cite{lang_codedepends_2018}}\quad \LinkMark{\link{https://github.com/duncantl/CodeDepends}{github.com/duncantl/CodeDepends}} \begin{itemize}
       \item<9-> \only<14-|handout:2>{\expandafter\Out}{Dependency analysis}\Snode{dep-analysis}
       \item<9-> Creation of call-graphs
-      \item<9-> \only<15-|handout:2>{\expandafter\Out}{Classification of tasks}\Snode{classification}
+      % \item<9-> \only<15-|handout:2>{\expandafter\Out}{Classification of tasks}\Snode{classification}
    \end{itemize}
 \end{itemize}
 \begin{tikzpicture}[@O]
@@ -82,9 +81,9 @@
    \onslide<14-|handout:2>{
       \Arrow{dep-analysis}{Only top scope}
    }
-   \onslide<15-|handout:2>{
-      \Arrow{classification}{Regex-based matching}
-   }
+   % \onslide<15-|handout:2>{
+   %    \Arrow{classification}{Regex-based matching}
+   % }
 \end{tikzpicture}
 \end{columns}
 \note[itemize]{%

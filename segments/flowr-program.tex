@@ -92,62 +92,50 @@
 \subsection{The Program}
 \begin{frame}{\insertsubsection}
 \centering\begin{tikzpicture}[br/.style={fill=lightgray!25!btdm@background,minimum width=2.5cm,minimum height=1.5cm,signal,signal from=west,signal to=east,signal pointer angle=125},k/.style={below,font=\footnotesize,xshift=-.33mm,color=darkgray},m/.style={above,font=\scriptsize,xshift=-.33mm,color=gray},a/.style={}]
-   \only<11->{\tikzset{a/.style={opacity=.35}}}
+   \only<3->{\tikzset{a/.style={opacity=.35}}}
    \begin{uncoverenv}<2->
       \scope[transparency group,a]
       \node[br] (@) at (0,0) {};
       \node (file) at (@) {\rotatebox{-5}{\usebox\ArchitectureBox}\llap{\T{.r\kern8pt}}};
       \node[k] at (@.south) {Input File};
       \endscope
-   \end{uncoverenv}
 
-   \begin{uncoverenv}<3->
       \node[br,right=3mm] (@) at (@.east) {};
       \node (r-conv) at (@) {\usebox\RLogo};
       \node[above right=-.5mm,scale=.8,font=\tiny,gray] at(r-conv.south west) {[R]};
       \node[k] at (@.south) {Parsing};
-      \onslide<4->{\node[m] at (@.north) {\T{parse}\,\(\to\)\,XML};}
-   \end{uncoverenv}
+      % \onslide<4->{\node[m] at (@.north) {\T{parse}\,\(\to\)\,XML};}
 
-   \begin{uncoverenv}<5->
       \node[br,right=3mm] (@) at (@.east) {};
       \node (first-ast) at (@) {\usebox\FirstAst};
       \node[k] at (@.south) {Normalization};
-      \onslide<6->{\node[m] at (@.north) {in TypeScript};}
+      % \onslide<6->{\node[m] at (@.north) {in TypeScript};}
       \coordinate (@l) at(@.south west);
-   \end{uncoverenv}
 
-   \begin{uncoverenv}<7->
       \node[br,right=3mm] (@) at (@.east) {};
       \node (dataflow) at (@) {\usebox\DataFlow};
       \node[k] at (@.south) {Data-Flow};
-   \end{uncoverenv}
 
-   \begin{uncoverenv}<8->
       \node[br,right=3mm] (@) at (@.east) {};
       \node (slicing) at (@) {\usebox\Slicing};
       \node[k] at (@.south) {Slicing};
-      \onslide<9->{\node[m] at (@.north) {Weiser~\cite{weiser_program_1984}};}
+      % \onslide<9->{\node[m] at (@.north) {Weiser~\cite{weiser_program_1984}};}
       \coordinate (@r) at(@.south east);
-   \end{uncoverenv}
 
-   \begin{uncoverenv}<10->
       \scope[transparency group,a]
       \node[br,right=3mm] (@) at (@.east) {};
       \node (export) at (@) {\rotatebox{-5}{\usebox\ArchitectureBox}\llap{\T{.r\kern8pt}}};
       \node[k] at (@.south) {Output};
-      \onslide<9->{\node[m] at (@.north) {Slice,~\ldots};}
+      % \onslide<9->{\node[m] at (@.north) {Slice,~\ldots};}
       \endscope
    \end{uncoverenv}
-
-   \onslide<11->{\draw[decorate,decoration={brace,mirror}] ([xshift=-1cm,yshift=-6mm]@l) to[edge node={node[below] {\includegraphics[height=2\baselineskip]{logos/flowR.pdf}}}] ([xshift=1mm,yshift=-6mm]@r);}
+   \onslide<4->{\draw[decorate,decoration={brace,mirror}] ([xshift=-1cm,yshift=-6mm]@l) to[edge node={node[below] {\includegraphics[height=2\baselineskip]{logos/flowR.pdf}}}] ([xshift=1mm,yshift=-6mm]@r);}
 \end{tikzpicture}
 \begin{tikzpicture}[overlay,remember picture]
-   \onslide<3->{\node[above left,yshift=\btdmfootheight,gray,font=\tiny] at (current page.south east) {[R]~\url{https://www.r-project.org/logo/}};}
-   \onslide<9->{\node[above right,yshift=\btdmfootheight,gray,font=\tiny] at(current page.south west) {\cite{weiser_program_1984}~\citeauthor{weiser_program_1984}, \citetitle{weiser_program_1984} (\citeyear{weiser_program_1984})};}
+   \onslide<2->{\node[above right,yshift=\btdmfootheight,gray,font=\tiny] at (current page.south west) {[R]~\url{https://www.r-project.org/logo/}};}
+   % \onslide<9->{\node[above right,yshift=\btdmfootheight,gray,font=\tiny] at(current page.south west) {\cite{weiser_program_1984}~\citeauthor{weiser_program_1984}, \citetitle{weiser_program_1984} (\citeyear{weiser_program_1984})};}
 \end{tikzpicture}
 \end{frame}
-
 
 
 \StoreOverview{b/.style={},c/.style={}}
@@ -210,7 +198,7 @@
 
    \draw[-Kite,line cap=round] ([xshift=5mm]@.east|-@2.west) to[edge node={node[above] {\footnotesize\itshape normalized}}] ([xshift=-5mm]@2.west);
    }
-\end{tikzpicture}\medskip
+\end{tikzpicture}\bigskip
 \begin{itemize}
    \itemsep3.5pt
    \item<4-> Normalizing constants, namespacing, operators, \ldots
@@ -233,11 +221,10 @@
 }(1)%
 \end{frame}
 \StoreOverview{d/.style={}}
-% \fi
 
 
 \def\MarkBox#1{#1}%TODO: \fcolorbox{lgray}{btdm@background}{#1}}
-\newcommand\MarkAt[3][0]{\setbox0=\hbox{~#3~}\makebox[1mm][c]{\null\hfill\only<#2|handout:#1>{\color{paletteA}\bfseries\fboxsep=1pt\expandafter\MarkBox}\null\hfill}{#3}}
+\newcommand\MarkAt[3][0]{\setbox0=\hbox{~#3~}\makebox[\wd0+1mm][c]{\null\hfill\only<#2|handout:#1>{\color{paletteA}\bfseries\fboxsep=1pt\expandafter\larger\MarkBox}{\smash{#3}}\null\hfill}}
 \newsavebox\EmptyEnvBox
 \tikzset{%
    Env/.style={text width=1.5cm,rounded corners=2pt,fill=btdm@background},
@@ -254,27 +241,55 @@
 \newsavebox\EnvBox
 \setbox\EnvBox=\hbox{}
 \savebox\EmptyEnvBox{\GetWith{}}
-\newsavebox\BoxWithX
-\savebox\BoxWithX{\GetWith{x}}
-\newsavebox\BoxWithr
-\savebox\BoxWithr{\GetWith{r}}
-\newsavebox\BoxWithrAndX
-\savebox\BoxWithrAndX{\GetWith{x, r}}
+\newsavebox\BoxWithX \savebox\BoxWithX{\GetWith{x}}
+\newsavebox\BoxWithY \savebox\BoxWithY{\GetWith{y}}
+\newsavebox\BoxWithZ \savebox\BoxWithZ{\GetWith{z}}
+\newsavebox\BoxWithFull \savebox\BoxWithFull{\GetWith{x, y, z}}
 
 \newcommand<>\OpaOn[1]{\tikzset{@@/.style={}}\only#2{\tikzset{@@/.style={opacity=.4}}}\scope[transparency group,@@]#1\endscope}
-\newsavebox\XDefGraph
+
 \tikzset{
    comm/.style={rectangle,draw=gray,text width=9mm,align=center,minimum height=5mm,font=\ttfamily,fill=lgray},
    d/.style={comm,rounded corners=2pt},
    u/.style={comm,rounded rectangle},
    T/.style={font=\scriptsize,gray}
 }
-\savebox\XDefGraph{\tikz{%
-   \node[d] (@) at (0,0) {x\textsubscript{1}};
+\def\WithGraph#1{\tikz{%
+#1
 \pgfinterruptboundingbox
-   \node[above=-1.25mm,gray] at(@.north) {\scriptsize\strut Graph};
+\node[above=-1.25mm,gray] at(@.north) {\scriptsize\strut Graph};
 \endpgfinterruptboundingbox
 }}
+
+\newsavebox\XUseGraph \savebox\XUseGraph{\WithGraph{\node[u] (@) at (0,0) {x\textsubscript{1}};}}
+\newsavebox\XDefGraph \savebox\XDefGraph{\WithGraph{\node[d] (@) at (0,0) {x\textsubscript{1}};}}
+\newsavebox\YUseGraph \savebox\YUseGraph{\WithGraph{\node[u] (@) at (0,0) {y\textsubscript{1}};}}
+\newsavebox\ZUseGraph \savebox\ZUseGraph{\WithGraph{\node[u] (@) at (0,0) {z\textsubscript{1}};}}
+\newsavebox\YDefGraph \savebox\YDefGraph{\WithGraph{\node[d] (@) at (0,0) {y\textsubscript{1}};}}
+\newsavebox\XBUseGraph \savebox\XBUseGraph{\WithGraph{\node[u] (@) at (0,0) {x\textsubscript{2}};}}
+\newsavebox\YBUseGraph \savebox\YBUseGraph{\WithGraph{\node[u] (@) at (0,0) {y\textsubscript{2}};}}
+\newsavebox\XYBUseGraph \savebox\XYBUseGraph{\WithGraph{\node[u] (@) at (0,0) {y\textsubscript{2}}; \node[u,below=2mm] at (@.south) {x\textsubscript{2}};}}
+\newsavebox\XYYBUseGraph \savebox\XYYBUseGraph{\WithGraph{%
+   \node[u] (y) at (0,0) {y\textsubscript{2}};
+   \node[u,below=2mm] (x) at (y.south) {x\textsubscript{2}};
+   \node[d,left=4mm] (z) at (current bounding box.west) {z\textsubscript{1}};
+   \draw[Kite-] (z) -- (x);
+   \draw[Kite-] (z) -- (y);
+   \coordinate(@) at(current bounding box.north);
+}}
+\newsavebox\FullUseGraph \savebox\FullUseGraph{\WithGraph{%
+   \node[u] (y) at (0,0) {y\textsubscript{2}};
+   \node[u,below=2mm] (x) at (y.south) {x\textsubscript{2}};
+   \node[d,left=4mm] (z) at (current bounding box.west) {z\textsubscript{1}};
+   \node[d,right=4mm] (xb) at(x.east) {x\textsubscript{1}};
+   \node[d,right=4mm] (yb) at(y.east) {y\textsubscript{1}};
+   \draw[Kite-] (z) -- (x);
+   \draw[Kite-] (z) -- (y);
+   \draw[densely dotted,Kite-] (x) -- (xb);
+   \draw[densely dotted,Kite-] (y) -- (yb);
+   \coordinate(@) at(current bounding box.north);
+}}
+
 \newsavebox\rDefGraph
 \savebox\rDefGraph{\tikz{%
    \node[d] (@) at (0,0) {r\textsubscript{1}};
@@ -283,32 +298,35 @@
 \endpgfinterruptboundingbox
 }}
 
-\tikzset{K/.style={midway,#1=-.5mm,sloped,font=\smaller[3]}}
+
+
+\tikzset{K/.style={midway,#1=-.5mm,font=\smaller[3]}}
 \begin{frame}[fragile]{RQ1: Data-Flow}
 % TODO: complete from 2.17 with read-graphs propagation
 \solsetmintedstyle{plain}
 \begin{minted}[escapeinside={/*}{*/}]{R}
-/*\onslide<2->*/x <- 1
-r <- if(y > 1) x else y/*\onslide<1->*/
+/*\onslide<2->*/x <- 21
+y <- 2
+z <- x * y/*\onslide<1->*/
 \end{minted}
 \begin{center}
 \begin{onlyenv}<3|handout:1>
 \begin{forest}
    T, for tree={l sep=2mm,s sep=5mm,font=\footnotesize}
-   [exprlist, s sep=3cm, l sep=0mm
-      [\Content{assignment}{\LeftArrow}
+   [exprlist, s sep=2cm, l sep=0mm
+      [\Content{assignment}{\LeftArrow}, edge label={node[K=above,sloped] {1}}
          [\Content{symbol}{x}, edge label={node[K=above,sloped] {target}}]
-         [\Content{number}{1}, edge label={node[K=above,sloped] {source}}]
+         [\Content{number}{21}, edge label={node[K=above,sloped] {source}}]
       ]
-      [\Content{assignment}{\LeftArrow},
-         [\Content{symbol}{r}, edge label={node[K=above,sloped] {target}}]
-         [\Content{if-then-else}{if (\ldots) \ldots~else \ldots}, edge label={node[K=above,sloped] {source}}
-            [\Content{binary-op}{>}\vspace*{-3mm}, edge label={node[K=above,sloped] {when}},
-               [\Content{symbol}{y}, edge label={node[K=above,sloped] {lhs}}]
-               [\Content{symbol}{1}, edge label={node[K=above,sloped] {rhs}}]
-            ]
-            [\Content{symbol}{x}, edge label={node[K=above,sloped] {then}}]
-            [\Content{symbol}{y}, edge label={node[K=above,sloped] {else}}]
+      [\Content{assignment}{\LeftArrow}, edge label={node[K=right] {2}}
+         [\Content{symbol}{y}, edge label={node[K=above,sloped] {target}}]
+         [\Content{number}{2}, edge label={node[K=above,sloped] {source}}]
+      ]
+      [\Content{assignment}{\LeftArrow}, edge label={node[K=above,sloped] {3}}
+         [\Content{symbol}{z}, edge label={node[K=above,sloped] {target}}]
+         [\Content{binary-op}{\raisebox{-5pt}{\large*}}\vspace*{-3mm}, edge label={node[K=above,sloped] {source}},
+            [\Content{symbol}{x}, edge label={node[K=above,sloped] {lhs}}]
+            [\Content{symbol}{y}, edge label={node[K=above,sloped] {rhs}}]
          ]
       ]
    ]
@@ -317,50 +335,93 @@ r <- if(y > 1) x else y/*\onslide<1->*/
 \begin{onlyenv}<4-|handout:2>
 \begin{forest}
    T, for tree={l sep=2mm,s sep=1.5cm, s sep-=5mm,font=\footnotesize}
-   [\MarkAt{5-6}{exprlist},name=exprlist, s sep=3cm, l sep=0mm
-      [\MarkAt{7,12}{\LeftArrow},name=la
-         [\MarkAt{8-10}{x}, name=x1, edge label={node[K=above,sloped] {target}}]
-         [\MarkAt{11}{1}, edge label={node[K=above,sloped] {source}},name=1]
+   [\MarkAt{5,6,21}{exprlist}, s sep=2cm, l sep=0mm,name=exprlist
+      [\MarkAt{7,11}{\LeftArrow}, edge label={node[K=above,sloped] {1}},name=la1
+         [\MarkAt{8,9}{x}, edge label={node[K=above,sloped] {target}},name=x1]
+         [\MarkAt{10}{21}, edge label={node[K=above,sloped] {source}},name=21]
       ]
-      [\MarkAt{13}{\LeftArrow},name=la2,s sep=3cm
-         [\MarkAt{14}{r}, name=r,edge label={node[K=above,sloped] {target}}]
-         [\MarkAt{15,16}{if}, edge label={node[K=above,sloped] {source}},name=if,s sep=1.5cm,
-            [>, edge label={node[K=above,sloped] {when}},name=gt,
-               [y, edge label={node[K=above,sloped] {lhs}},name=y1]
-               [1, edge label={node[K=above,sloped] {rhs}},name=a12]
-            ]
-            [x, edge label={node[K=above,sloped] {then}},name=x2]
-            [y, edge label={node[K=above,sloped] {else}},name=y2]
+      [\MarkAt{12,13}{\LeftArrow}, edge label={node[K=right] {2}},name=la2
+         [y, edge label={node[K=above,sloped] {target}},name=y1]
+         [2, edge label={node[K=above,sloped] {source}},name=2]
+      ]
+      [\MarkAt{14,20}{\LeftArrow}, edge label={node[K=above,sloped] {3}},name=la3
+         [\MarkAt{15}{z}, edge label={node[K=above,sloped] {target}},name=z1]
+         [\MarkAt{16,19}{\raisebox{-5pt}{\large*}}\vspace*{-3mm}, edge label={node[K=above,sloped] {source}}, name=star,
+            [\MarkAt{17}{x}, edge label={node[K=above,sloped] {lhs}},name=x2]
+            [\MarkAt{18}{y}, edge label={node[K=above,sloped] {rhs}},name=y2]
          ]
       ]
    ]
 \pgfinterruptboundingbox
-   \onslide<6->{\OpaOn<7->{\node[above right=-1mm,scale=.65] at(exprlist.north east) {\usebox\EmptyEnvBox};}}
-   \onslide<7-11|handout:0>{\OpaOn<8->{\node[above left=-1mm,yshift=-1mm,scale=.65] at(la.north west) {\usebox\EmptyEnvBox};}}
-   \onslide<8|handout:0>{\node[left,yshift=.5mm,scale=.65] at(x1.west) {\usebox\EmptyEnvBox};}
-   \onslide<9->{\OpaOn<10->{\node[left,yshift=.5mm,scale=.65] (@x) at(x1.west) {\usebox\BoxWithX};}}
-   \onslide<10->{\OpaOn<11->{\node[below,scale=.65] at(x1.south) {\usebox\XDefGraph};}}
-   \onslide<11->{\OpaOn<12->{\node[right=-1mm,scale=.65] at(1.east) {\usebox\EmptyEnvBox};}}
-   \onslide<12->{%\OpaOn<13->{
-      \node[above left=-1mm,yshift=-1mm,scale=.65] (@) at(la.north west) {\usebox\BoxWithX};
+   \onslide<6-20|handout:0>{\OpaOn<7->{\node[above,scale=.65] at(exprlist.north) {\usebox\EmptyEnvBox};}}
+   \onslide<7-10|handout:0>{\OpaOn<8->{\node[above left=-1mm,yshift=-1mm,scale=.65] at(la1.north west) {\usebox\EmptyEnvBox};}}
+   % \onslide<8|handout:0>{\node[left,yshift=.5mm,scale=.65] at(x1.west) {\usebox\EmptyEnvBox};}
+   \onslide<8->{\OpaOn<9->{\node[left,yshift=.5mm,scale=.65] (@x) at(x1.west) {\usebox\EmptyEnvBox};}}
+   \onslide<9->{\OpaOn<10->{\node[below=1mm,scale=.65] at(x1.south) {\usebox\XUseGraph};}}
+   \onslide<10->{\OpaOn<11->{\node[below,scale=.65] at(21.south) {\usebox\EmptyEnvBox};}}
+   \onslide<11->{%\OpaOn<13->{
+      \node[above left=-1mm,yshift=-1mm,scale=.65] (@) at(la1.north west) {\usebox\BoxWithX};
       \node[left,scale=.65] at(@.west) {\usebox\XDefGraph};
-   %}
    }
-   \onslide<13->{\OpaOn<14->{\node[above right=-1mm,yshift=-1mm,scale=.65] at(la2.north east) {\usebox\EmptyEnvBox};}}
-   \onslide<14->{\OpaOn<15->{
-      \node[left,scale=.65] at(r.west) {\usebox\BoxWithr};
-      \node[below left,scale=.65] at(r.south west) {\usebox\rDefGraph};
+   \onslide<12|handout:0>{\OpaOn<13->{ \node[left=-1mm,yshift=-1.25mm,scale=.65] (@) at(la2.north west) {\usebox\EmptyEnvBox};}}
+   \onslide<13->{\OpaOn<14->{
+      % \node[left,yshift=.5mm,scale=.65] (@x) at(x1.west) {\usebox\EmptyEnvBox};
+      \node[left,yshift=.5mm,scale=.65] (@x) at(y1.west) {\usebox\EmptyEnvBox};
+      \node[below=1mm,scale=.65] at(y1.south) {\usebox\YUseGraph};
+      \node[below,scale=.65] at(2.south) {\usebox\EmptyEnvBox};
+   }
+      \node[left=-1mm,yshift=-1.25mm,scale=.65] at(la2.north west) {\usebox\YDefGraph};
+      \node[right=-1mm,yshift=-1.25mm,scale=.65] at(la2.north east) {\usebox\BoxWithY};
+   }
+   \onslide<14-19|handout:0>{\OpaOn<15->{%
+      \node[above right=-1mm,yshift=-1mm,scale=.65] (@la3) at(la3.north east) {\usebox\EmptyEnvBox};
+      %\node[below=1mm,scale=.65] at(y1.south) {\usebox\YUseGraph};
+      %\node[below,scale=.65] at(2.south) {\usebox\EmptyEnvBox};
    }}
-   \onslide<15->{\OpaOn<16->{
-      \node[above right,scale=.65] at(if.east) {\usebox\EmptyEnvBox};
+   \onslide<15->{\OpaOn<16->{%
+      \node[left,yshift=.5mm,scale=.65] (@x) at(z1.west) {\usebox\EmptyEnvBox};
+      \node[below,scale=.65] at(z1.south) {\usebox\ZUseGraph};
    }}
-   \onslide<16->{\OpaOn<17->{
-      \node[above left,scale=.65] at(gt.north west) {\usebox\EmptyEnvBox};
-      \node[left,scale=.65] at (y1.west) {\usebox\EmptyEnvBox};
-      \node[below,scale=.65] at(a12.south) {\usebox\EmptyEnvBox};
-      \node[below,scale=.65] at(x2.south) {\usebox\EmptyEnvBox};
-      \node[below,scale=.65] at(y2.south) {\usebox\EmptyEnvBox};
+   \onslide<16-18|handout:0>{\OpaOn<17->{%
+      \node[right,yshift=.5mm,scale=.65] (@x) at(star.east) {\usebox\EmptyEnvBox};
+      % \node[below=1mm,scale=.65] at(star.south) {\usebox\ZUseGraph};
    }}
+   \onslide<17->{\OpaOn<18->{%
+      \node[below left,xshift=-.75mm,yshift=-.5mm,scale=.65] (@x) at(x2.south west) {\usebox\EmptyEnvBox};
+      \node[below,scale=.65] at(x2.south) {\usebox\XBUseGraph};
+   }}
+   \onslide<18->{\OpaOn<19->{%
+      \node[below right,xshift=.75mm,yshift=-.5mm,scale=.65] (@x) at(y2.south east) {\usebox\EmptyEnvBox};
+      \node[below,scale=.65] at(y2.south) {\usebox\YBUseGraph};
+   }}
+   \onslide<19->{\OpaOn<20->{%
+      \node[right,yshift=.5mm,scale=.65] (@x) at(star.east) {\usebox\EmptyEnvBox};
+      \node[right,scale=.65] at(@x.east) {\usebox\XYBUseGraph};
+   }}
+   \onslide<20->{%\OpaOn<21->{%
+      \node[above right=-1mm,yshift=-1mm,scale=.65] (@la3) at(la3.north east) {\usebox\BoxWithZ};
+      \node[right,yshift=.5mm,scale=.65] (@x) at(@la3.east) {\usebox\XYYBUseGraph};
+   }%}
+   \onslide<21->{%\OpaOn<22->{
+      \node[above,scale=.65] (@x) at(exprlist.north) {\usebox\BoxWithFull};
+      \node[right,yshift=.5mm,scale=.65] at(@x.east) {\usebox\FullUseGraph};
+   }%}
+   % }
+   % \onslide<13->{\OpaOn<14->{\node[above right=-1mm,yshift=-1mm,scale=.65] at(la2.north east) {\usebox\EmptyEnvBox};}}
+   % \onslide<14->{\OpaOn<15->{
+   %    \node[left,scale=.65] at(r.west) {\usebox\BoxWithr};
+   %    \node[below left,scale=.65] at(r.south west) {\usebox\rDefGraph};
+   % }}
+   % \onslide<15->{\OpaOn<16->{
+   %    \node[above right,scale=.65] at(if.east) {\usebox\EmptyEnvBox};
+   % }}
+   % \onslide<16->{\OpaOn<17->{
+   %    \node[above left,scale=.65] at(gt.north west) {\usebox\EmptyEnvBox};
+   %    \node[left,scale=.65] at (y1.west) {\usebox\EmptyEnvBox};
+   %    \node[below,scale=.65] at(a12.south) {\usebox\EmptyEnvBox};
+   %    \node[below,scale=.65] at(x2.south) {\usebox\EmptyEnvBox};
+   %    \node[below,scale=.65] at(y2.south) {\usebox\EmptyEnvBox};
+   % }}
 \endpgfinterruptboundingbox
 \end{forest}
 \end{onlyenv}

@@ -1,0 +1,107 @@
+\appendix
+
+\begin{frame}{Overview}
+   \tableofcontents
+\end{frame}
+
+\section{Quote}
+% https://rstudio-pubs-static.s3.amazonaws.com/32755_ed1dfe49c84e42c89a1a27f57a6e6557.html#/5
+% https://statmodeling.stat.columbia.edu/2010/09/13/ross_ihaka_to_r/
+% R for visualization
+\begin{frame}[c,plain]{}
+\begin{tikzpicture}[@O]
+   \node (@) at(current page.center) {\begin{minipage}{.8\linewidth}
+      \hyphenpenalty=10000\relax
+      \Large\linespread{1.05}\only<3->{\color{gray}}\onslide<2->{\strut I have been worried for some time that R isn’t going to provide the base that we’re going to need for statistical computation in the future.\strut}%\medskip\par
+   \end{minipage}};
+   \onslide<3->{\node[below left,align=right] at(@.south east) {Ross Ihaka\\Co-Creator of R};}
+\end{tikzpicture}
+\note[itemize]{%
+\item Arbeitet seit 2010 an einem nicht angekündigten aber immer wieder erwähnten Nachfolger
+}(1)%
+\end{frame}
+
+
+\section{Languageserver}
+\begin{frame}[fragile]{Definition-Retrieval}
+\solsetmintedstyle{plain}\lstfs{8}%
+\begin{minted}{R}
+paste(
+   "(*|descendant-or-self::exprlist/*)[self::FUNCTION or self::OP-LAMBDA]/following-sibling::SYMBOL_FORMALS[text() = '{token_quote}' and @line1 <= {row}]",
+   "(*|descendant-or-self::exprlist/*)[LEFT_ASSIGN[preceding-sibling::expr[count(*)=1]/SYMBOL[text() = '{token_quote}' and @line1 <= {row}] and following-sibling::expr[@start > {start} or @end < {end}]]]",
+   "(*|descendant-or-self::exprlist/*)[RIGHT_ASSIGN[following-sibling::expr[count(*)=1]/SYMBOL[text() = '{token_quote}' and @line1 <= {row}] and preceding-sibling::expr[@start > {start} or @end < {end}]]]",
+   "(*|descendant-or-self::exprlist/*)[EQ_ASSIGN[preceding-sibling::expr[count(*)=1]/SYMBOL[text() = '{token_quote}' and @line1 <= {row}] and following-sibling::expr[@start > {start} or @end < {end}]]]",
+   "forcond/SYMBOL[text() = '{token_quote}' and @line1 <= {row}]",
+sep = "|")
+\end{minted}
+\end{frame}
+
+\section{More Dataflow}
+\def\G#1{\only<3->{\textsubscript{\color{gray}#1}}}
+\newcommand<>\OpOn{\tikzset{@/.style={}}\only#1{\tikzset{@/.style={opacity=.5}}}}
+\begin{frame}[fragile]{Example Dataflow}
+\qquad\begin{uncoverenv}<2->
+\begin{minipage}{.25\linewidth}
+\CodeAnimationsNoFadeOut
+\AnimateCode{onslide={1,2,3,4,6,0}, first slide=4,handout={4/1}}
+\begin{minted}[deletekeywords={c},escapeinside=||,lineskip=4pt]{R}
+a|\G0| <- 3
+a|\G1| <- x|\G0| * m|\G0|
+
+if(m|\G1| > 3) {
+  a|\G2| <- 5
+}
+
+b|\G0| <- a|\G3| + c|\G0|
+\end{minted}\hfill
+\endAnimateCode
+\end{minipage}
+\end{uncoverenv}
+\begin{uncoverenv}<4->
+\begin{minipage}{.6\linewidth}
+\centering\def\XSep{1cm}
+\def\YSep{8mm}
+\resizebox*!{6cm}{\begin{tikzpicture}[comm/.style={rectangle,draw,text width=9mm,align=center,minimum height=5mm,font=\ttfamily,fill=lightgray!25!btdm@background},d/.style={comm,rounded corners=2pt},u/.style={comm,rounded rectangle},T/.style={font=\scriptsize,gray}]
+   \OpOn<5-8>
+   \onslide<4->{\scope[@]\node[d] (a0) at (0,0) {a\G0};\endscope}
+   \OpOn<6-8>
+   \onslide<5->{\scope[@]\node[d,below=\YSep] (a1) at (a0.south) {a\G1};
+   \draw[densely dotted] (a0) to[edge node={node[left,T] {same (def-def)}}] (a1);
+   \node[u,right=\XSep] (x0) at (a1.east) {x\G0};
+   \node[u,right=\XSep] (m0) at (x0.east) {m\G0};
+   \draw[-Kite] (a1) to[edge node={node[below,T] {def-by}}] (x0);
+   \draw[-Kite] (a1) to[bend left=15,edge node={node[above,T] {def-by}}] (m0);
+   \endscope}
+
+   \OpOn<7-8>
+   \onslide<6->{
+   \scope[@]
+   \node[u,below=\YSep] (m1) at (a1.south) {m\G1};
+   \draw[densely dotted] (m0) to[edge node={node[below,sloped,T] {same (read-read)}}] (m1);
+   \endscope
+   }
+   \OpOn<8-8>
+   \onslide<7->{
+      \scope[@]
+      \node[d,below=\YSep] (a2) at (m1.south) {a\G2};
+      \draw[densely dotted] (a1.210) to[bend right,edge node={node[left,T] {same (def-def)}}] (a2.150);
+      \endscope
+   }
+
+   \onslide<8->{
+   \node[d,below=\YSep] (b0) at (a2.south) {b\G0};
+   \node[u,right=\XSep] (a3) at (b0.east) {a\G3};
+   \node[u,right=\XSep] (c0) at (a3.east) {c\G0};
+   \draw[-Kite] (b0) to[edge node={node[above,T] {def-by}}] (a3);
+   \draw[-Kite] (b0) to[bend right=15,edge node={node[below,T] {def-by}}] (c0);
+
+   \node[above=\YSep,comm,text width=0pt,minimum size=1mm,shape=diamond] (@1) at (a3.north) {};
+   \draw[-Kite] (a3) to[edge node={node[right,T] {read (may)}}] (@1);
+   \draw[densely dotted,-Kite] (@1) -- (a2);
+   \draw[densely dotted,-Kite] (@1) -- (a1);
+   }
+\end{tikzpicture}}
+\end{minipage}
+\end{uncoverenv}
+\end{frame}
+
