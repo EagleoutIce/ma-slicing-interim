@@ -49,11 +49,11 @@
 \newsavebox\Overview
 \def\StoreOverview#1{%
 \setbox\Overview=\hbox{\begin{tikzpicture}[br/.style={fill=lightgray!25!btdm@background,minimum width=2.5cm,minimum height=1.5cm,signal,signal from=west,signal to=east,signal pointer angle=125},k/.style={below,font=\footnotesize,xshift=-.33mm,color=darkgray},m/.style={above,font=\scriptsize,xshift=-.33mm,color=gray},base/.style={opacity=.35},a/.style={base},b/.style={base},c/.style={base},d/.style={base},e/.style={base},f/.style={base},#1]
-   \scope[transparency group,a]
-   \node[br] (@) at (0,0) {};
-   \node (file) at (@) {\rotatebox{-5}{\usebox\ArchitectureBox}\llap{\T{.r\kern8pt}}};
-   \node[k] at (@.south) {Input File};
-   \endscope
+   % \scope[transparency group,a]
+   % \node[br] (@) at (0,0) {};
+   % \node (file) at (@) {\rotatebox{-5}{\usebox\ArchitectureBox}\llap{\T{.r\kern8pt}}};
+   % \node[k] at (@.south) {Input File};
+   % \endscope
 
    \scope[transparency group,b]
    \node[br,right=3mm] (@) at (@.east) {};
@@ -70,7 +70,7 @@
    \scope[transparency group,d]
    \node[br,right=3mm] (@) at (@.east) {};
    \node (dataflow) at (@) {\usebox\DataFlow};
-   \node[k] at (@.south) {Dataflow};
+   \node[k] at (@.south) {Data-Flow};
    \endscope
 
    \scope[transparency group,e]
@@ -79,22 +79,25 @@
    \node[k] at (@.south) {Slicing};
    \endscope
 
-   \scope[transparency group,f]
-   \node[br,right=3mm] (@) at (@.east) {};
-   \node (export) at (@) {\rotatebox{-5}{\usebox\ArchitectureBox}\llap{\T{.r\kern8pt}}};
-   \node[k] at (@.south) {Output};
-   \endscope
+   % \scope[transparency group,f]
+   % \node[br,right=3mm] (@) at (@.east) {};
+   % \node (export) at (@) {\rotatebox{-5}{\usebox\ArchitectureBox}\llap{\T{.r\kern8pt}}};
+   % \node[k] at (@.south) {Output};
+   % \endscope
 \end{tikzpicture}}}
 
 
 \section{First Results}
 \subsection{The Program}
 \begin{frame}{\insertsubsection}
-\centering\begin{tikzpicture}[br/.style={fill=lightgray!25!btdm@background,minimum width=2.5cm,minimum height=1.5cm,signal,signal from=west,signal to=east,signal pointer angle=125},k/.style={below,font=\footnotesize,xshift=-.33mm,color=darkgray},m/.style={above,font=\scriptsize,xshift=-.33mm,color=gray}]
+\centering\begin{tikzpicture}[br/.style={fill=lightgray!25!btdm@background,minimum width=2.5cm,minimum height=1.5cm,signal,signal from=west,signal to=east,signal pointer angle=125},k/.style={below,font=\footnotesize,xshift=-.33mm,color=darkgray},m/.style={above,font=\scriptsize,xshift=-.33mm,color=gray},a/.style={}]
+   \only<11->{\tikzset{a/.style={opacity=.35}}}
    \begin{uncoverenv}<2->
+      \scope[transparency group,a]
       \node[br] (@) at (0,0) {};
       \node (file) at (@) {\rotatebox{-5}{\usebox\ArchitectureBox}\llap{\T{.r\kern8pt}}};
       \node[k] at (@.south) {Input File};
+      \endscope
    \end{uncoverenv}
 
    \begin{uncoverenv}<3->
@@ -110,6 +113,7 @@
       \node (first-ast) at (@) {\usebox\FirstAst};
       \node[k] at (@.south) {Normalization};
       \onslide<6->{\node[m] at (@.north) {in TypeScript};}
+      \coordinate (@l) at(@.south west);
    \end{uncoverenv}
 
    \begin{uncoverenv}<7->
@@ -123,14 +127,19 @@
       \node (slicing) at (@) {\usebox\Slicing};
       \node[k] at (@.south) {Slicing};
       \onslide<9->{\node[m] at (@.north) {Weiser~\cite{weiser_program_1984}};}
+      \coordinate (@r) at(@.south east);
    \end{uncoverenv}
 
    \begin{uncoverenv}<10->
+      \scope[transparency group,a]
       \node[br,right=3mm] (@) at (@.east) {};
       \node (export) at (@) {\rotatebox{-5}{\usebox\ArchitectureBox}\llap{\T{.r\kern8pt}}};
       \node[k] at (@.south) {Output};
       \onslide<9->{\node[m] at (@.north) {Slice,~\ldots};}
+      \endscope
    \end{uncoverenv}
+
+   \onslide<11->{\draw[decorate,decoration={brace,mirror}] ([xshift=-1cm,yshift=-6mm]@l) to[edge node={node[below] {\includegraphics[height=2\baselineskip]{logos/flowR.pdf}}}] ([xshift=1mm,yshift=-6mm]@r);}
 \end{tikzpicture}
 \begin{tikzpicture}[overlay,remember picture]
    \onslide<3->{\node[above left,yshift=\btdmfootheight,gray,font=\tiny] at (current page.south east) {[R]~\url{https://www.r-project.org/logo/}};}
@@ -209,7 +218,9 @@
    \item<5-> We use the \link{https://cran.r-project.org/doc/manuals/r-release/R-lang.pdf}{\say{R language definition}}\textsuperscript{\color{gray}\cite{RLang}} as a basis
    % \item<6-> \link{https://roxygen2.r-lib.org/}{Roxygen2}, and comparable tools must be dealt with separately
 \end{itemize}
-\citeon<5->{RLang}
+\begin{tikzpicture}[@O]
+   \node[FCite] at(current page.south west) {\normalfont\mdseries\cite{RLang} \citeauthor{RLang}, \citetitle{RLang} (\citeyear{RLang})};
+\end{tikzpicture}
 % \begin{tabular}{p{.4\linewidth}>{\centering\arraybackslash}p{.4\linewidth}}
 %    \multicolumn{2}{l}{\onslide<2->{\footnotesize\bR{parse(text="if (TRUE) x else y")}}} \\
 %    \onslide<3->{\scalebox{.6}{\usebox\IfThenElseParseTree}} & \onslide<8->{\scalebox{.6}{\usebox\IfThenElseNormalized}} \\
@@ -273,7 +284,7 @@ TODO: wie viel?
       \begin{center}
             \begin{tabular}{c@{\hspace*{3.5em}}c}
                \onslide<3->{UseRs} & \onslide<3->{Package Authors} \medskip\\
-               \onslide<4->{published sources in social science} & \onslide<5->{top 500 CRAN packages} \\
+               \onslide<4->{published scripts in social science} & \onslide<5->{top 500 CRAN packages} \\
                \onslide<6->{\num{4230} files} & \onslide<7->{\num{25\,691} files}
             \end{tabular}
       \end{center}
