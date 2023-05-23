@@ -236,7 +236,7 @@
 % \fi
 
 
-\def\MarkBox#1{\fcolorbox{lgray}{btdm@background}{#1}}
+\def\MarkBox#1{#1}%TODO: \fcolorbox{lgray}{btdm@background}{#1}}
 \newcommand\MarkAt[3][0]{\setbox0=\hbox{~#3~}\makebox[1mm][c]{\null\hfill\only<#2|handout:#1>{\color{paletteA}\bfseries\fboxsep=1pt\expandafter\MarkBox}\null\hfill}{#3}}
 \newsavebox\EmptyEnvBox
 \tikzset{%
