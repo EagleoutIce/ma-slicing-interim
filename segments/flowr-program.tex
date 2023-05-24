@@ -91,6 +91,7 @@
 \section{Current State}
 \subsection{The Program}
 \begin{frame}{\insertsubsection}
+\hypertarget<1->{@Program}{}%
 \centering\begin{tikzpicture}[br/.style={fill=lightgray!25!btdm@background,minimum width=2.5cm,minimum height=1.5cm,signal,signal from=west,signal to=east,signal pointer angle=125},k/.style={below,font=\footnotesize,xshift=-.33mm,color=darkgray},m/.style={above,font=\scriptsize,xshift=-.33mm,color=gray},a/.style={}]
    \only<3->{\tikzset{a/.style={opacity=.35}}}
    \begin{uncoverenv}<2->
@@ -301,9 +302,10 @@
 
 
 \tikzset{K/.style={midway,#1=-.5mm,font=\smaller[3]}}
+\newsavebox\FinalDataFlow
 \begin{frame}[fragile]{RQ1: Data-Flow}
 % TODO: complete from 2.17 with read-graphs propagation
-\solsetmintedstyle{plain}
+\hypertarget<1->{@DataFlow}{}\solsetmintedstyle{plain}
 \begin{minted}[escapeinside={/*}{*/}]{R}
 /*\onslide<2->*/x <- 21
 y <- 2
@@ -333,6 +335,7 @@ z <- x * y/*\onslide<1->*/
 \end{forest}
 \end{onlyenv}
 \begin{onlyenv}<4-|handout:2>
+\begin{lrbox}\FinalDataFlow
 \begin{forest}
    T, for tree={l sep=2mm,s sep=1.5cm, s sep-=5mm,font=\footnotesize}
    [\MarkAt{5,6,21}{exprlist}, s sep=2cm, l sep=0mm,name=exprlist
@@ -424,6 +427,8 @@ z <- x * y/*\onslide<1->*/
    % }}
 \endpgfinterruptboundingbox
 \end{forest}
+\end{lrbox}\usebox\FinalDataFlow
+\global\setbox\FinalDataFlow=\box\FinalDataFlow
 \end{onlyenv}
 \end{center}
 
@@ -438,7 +443,7 @@ z <- x * y/*\onslide<1->*/
 \subsection{RQ2: Common Features}
 \begin{frame}[fragile,c]{RQ2: Features}
    \begin{itemize}[<+(1)->]
-      \itemsep\medskipamount
+      \itemsep8pt
       \item<2-> There are many ways to modify data in R, like: \begin{itemize}
          \item<3-> \bR{a <- 1}, \bR{a <<- 1}, \bR{a = 1}, \bR{1 -> a}, \bR{1 ->> a}
          \item<4-> \bR{assign("a", 1)}, \bR{b <- "a"; assign(b, 1)}
@@ -478,7 +483,7 @@ z <- x * y/*\onslide<1->*/
 \end{frame}
 
 \begin{frame}[c]{RQ2: Features\rhead{, III}}
-   \centering
+   \hypertarget<1>{@Feature}{}\centering
    \onslide<2->{\includegraphics{statistics/stat-assignments-I-.pdf}}%
    \hfill\onslide<3->{\includegraphics{statistics/stat-assignments-II-.pdf}}%
    \hfill\onslide<4->{\includegraphics{statistics/stat-assignments-=.pdf}}%
