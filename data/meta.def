@@ -1,6 +1,24 @@
 % no depth!
+\def\packtitlenode#1#2{\node[font=\usebeamerfont{subtitle},inner xsep=0pt,opacity=#1,outer ysep=2pt] (#2) {R~Programs};}
+
 \title{Constructing a Static Program Slicer}
-\subtitle{Specifically for R Programs}
+\newsavebox\TitleSliceBox
+\subtitle{Specifically for \texorpdfstring{\,\setbox\TitleSliceBox=\hbox{R~Pro\kern5pt\relax grams}\phantom{\copy\TitleSliceBox}\llap{\tikz[baseline=(k.base)]{%
+\packtitlenode0k
+\def\kA{300}\def\kB{120}\def\kS{-.5\wd\TitleSliceBox-5pt}
+\scope[xshift=-\kS]\packtitlenode0x
+\clip (x.south west)--(x.\kA)--(x.\kB)-| cycle;
+\packtitlenode1x
+\endscope
+\scope[xshift=\kS]
+\packtitlenode0y
+\clip (y.south east)--(y.\kA)--(y.\kB)-| cycle;
+\packtitlenode1y
+\endscope
+% cutline
+\fill[btdm@border@down,rounded corners=1.5pt] ([yshift=4pt,xshift=1.5pt]y.\kA)--([yshift=-4pt]y.\kB)--++(-3pt,0)--([xshift=-1.5pt,yshift=4pt]y.\kA) -- cycle;
+\fill[btdm@border@down,rounded corners=1.5pt] ([yshift=4pt,xshift=-1.5pt]x.\kA)--([yshift=-4pt,xshift=-1.5pt]x.\kB)--++(3pt,0)--([xshift=1.5pt,yshift=4pt]x.\kA) -- cycle;
+}\kern-.5\wd\TitleSliceBox}\;~}{R~Programs}}
 % \subtitle{Parallelizing and\texorpdfstring{\\}{\space}Distributing programs with the Shell}
 % \institute{\textsc{ccpdp}, Universität Ulm}
 
