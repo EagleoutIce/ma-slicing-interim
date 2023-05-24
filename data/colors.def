@@ -10,3 +10,5 @@
 
 \colorlet{lgray}{lightgray!48!white}
 \colorlet{codeouthl}{gray!42!white}
+\colorlet{hlgray}{gray!82!white}
+\colorlet{dfgray}{gray!55!white}

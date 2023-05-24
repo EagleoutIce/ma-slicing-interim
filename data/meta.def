@@ -12,5 +12,5 @@
 \setfootmarker{Interim --- Static Slicing}
 
 \date{\today}
-\outro{[TODO] Ulm \today}
+\outro{\textbf{Florian Sihler}\medskip\\Ulm\qquad \today}
 % \license[]{All rights reserved}

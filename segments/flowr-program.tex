@@ -436,8 +436,8 @@ z <- x * y/*\onslide<1->*/
 \end{frame}
 
 \subsection{RQ2: Common Features}
-\begin{frame}[fragile,b]{RQ2: Features}
-   \vspace*{9mm}\begin{itemize}[<+(1)->]
+\begin{frame}[fragile,c]{RQ2: Features}
+   \begin{itemize}[<+(1)->]
       \itemsep\medskipamount
       \item<2-> There are many ways to modify data in R, like: \begin{itemize}
          \item<3-> \bR{a <- 1}, \bR{a <<- 1}, \bR{a = 1}, \bR{1 -> a}, \bR{1 ->> a}
@@ -449,17 +449,12 @@ z <- x * y/*\onslide<1->*/
 % \begin{minted}[escapeinside={/*}{*/},aboveskip=0pt]{R}
 % /*\onslide<7->*/x <- new.env(); evalq(a <- 1, envir=x); evalq(a, envir=x)/*\onslide<1->*/
 % \end{minted}
-      \item<8-> Functions can be modified at will (and at any time):
-            \solsetmintedstyle{plain}\lstfs{10}%
-\begin{minted}[escapeinside={/*}{*/},aboveskip=0pt]{R}
-/*\onslide<9->*/f <- function(x) { y <- x * 3; y }
-/*\onslide<9->*/body(f)[[3]] <- quote(x)
-/*\onslide<9->*/f(2) # 2/*\onslide<1->*/
-\end{minted}
-      \item<10-> There are different class systems, variable length arguments, and more\ldots % like `...`
+      \item<7-> Functions can be modified at will (and at any time)
+
+      \item<8-> There are different class systems, variable length arguments, and more\ldots % like `...`
    \end{itemize}
 \begin{tikzpicture}[overlay,remember picture]
-   % \onslide<1->{\node[below left=5mm,xshift=1mm,scale=.7] at(current page.north east) {\usebox\Overview};}
+   \onslide<1->{\node[below left=5mm,xshift=1mm,scale=.7] at(current page.north east) {\usebox\Overview};}
 \end{tikzpicture}%
 \note[itemize]{%
 \item TODO: Package versionen sind unbekannt/nicht angegeben,
@@ -493,24 +488,41 @@ z <- x * y/*\onslide<1->*/
    % ~\onslide<7->{\includegraphics{statistics/stat-assignments-:=.pdf}}
 \end{frame}
 
+\def\I#1{\quad\textcolor{gray}{\footnotesize#1}}
 \begin{frame}[c]{RQ2: Features\rhead{, IV}}
    \centering
    \begin{itemize}
-      \item Meistgenutzte Pakete \(\implies\) Spezielle Unterstützung [TODO: hier nur noch Zahlen nicht pro datei etc.]
-      \item Verwendung von assign/setGeneric zu häufig \(\implies\) Spezielle Unterstützung [TODO: hier nochmal eine Grafik für gruppiert assignNamespace etc.]
-      \item Unterstztüzung für Datentypen usw. erstmal nur Zugriff per Name (meistgenutzt)
-      \item .C, .Fortran etc. konservativ abschätzen
+      \itemsep12pt
+      \item<2-> Most used packages allow to prioritize special support
+      \item<3-> \T{setGeneric}, \T{assign},\ldots{} used very often in package code
+      %   and other \say{reflective} functions are
+      \begin{itemize}
+         \item<4-> Namespaces are very rarely manipulated, we do not plan supporting that.
+      \end{itemize}
+      \item<5-> Data types are mostly accessed by name which allows for pointer analysis
+      \item<6-> \T{.C} and \T{.Fortran} are used seldomly
    \end{itemize}
-
+   \note[itemize]{%
+   \item Most used packages sind unterschiedlich in Paketen
+   }(1)%
    % TODO: 2-3 interesting findings (meistgenutzte Pakete,~\ldots)
 \end{frame}
 
-\begin{frame}[c]{RQ3: TODO [Slicing Block rechts oben]}
-   \centering
-   TODO: kurz auf die gezeigten features eingehen.
-   Scopes machen wir indem jede Funktion erstmal einen Datenflussgraph kriegt, der dann bei jedem Aufruf neu gebunden werden kann. ebenso sind environment informationen teil dees datenflussgraphen
-   sowie: unsicherheit...
-\end{frame}
+% \begin{frame}[c]{RQ2: Features\rhead{, V}}
+%    \centering\begin{itemize}
+%       % Meistgenutzte Pakete \(\implies\) Spezielle Unterstützung [TODO: hier nur noch Zahlen nicht pro datei etc.]
+%       % \item Verwendung von assign/setGeneric zu häufig \(\implies\) Spezielle Unterstützung [TODO: hier nochmal eine Grafik für gruppiert assignNamespace etc.]
+%       \item Unterstztüzung für Datentypen usw. erstmal nur Zugriff per Name (meistgenutzt)
+%       \item .C, .Fortran etc. konservativ abschätzen
+%    \end{itemize}
+% \end{frame}
+
+% \begin{frame}[c]{RQ3: TODO [Slicing Block rechts oben]}
+%    \centering
+%    TODO: kurz auf die gezeigten features eingehen.
+%    Scopes machen wir indem jede Funktion erstmal einen Datenflussgraph kriegt, der dann bei jedem Aufruf neu gebunden werden kann. ebenso sind environment informationen teil dees datenflussgraphen
+%    sowie: unsicherheit...
+% \end{frame}
 
 % \begin{frame}[c]{RQ4: TODO}
 %    \centering

@@ -1,5 +1,53 @@
 
 \section{Outlook}
-\begin{frame}{Kurze übersicht darüber, was noch gemacht werden muss}
-   [Zeitplan,~\ldots]
+\def\W{.85}
+% color | row | from | to
+\def\Data[#1]#2#3#4{
+    \filldraw[#1!75!white,rounded corners=1.25pt] (#2.east)++(2mm+#3*1.2cm,-4.5pt) rectangle ++(#4*1.2cm,9pt);
+}
+\begin{frame}{The Plan}
+% completed: 80 days future: 106 days
+\vspace*{-2mm}\only<2->{\resizebox{.95\linewidth}!{\begin{tikzpicture}[t/.style={gray},xscale=1.15]
+  \foreach[count=\i] \k in {Writing,Research,Static,Feature,Pointer,Evaluation,Finalize} {
+    \colorlet{@}{gray}
+    \only<5->{\colorlet{@}{hlgray!62!white}}
+    \ifnum\i=1\colorlet{@}{gray}\fi\ifnum\i=5\colorlet{@}{gray}\fi
+    \onslide<3->{\node[t,@,left] (\k) at (0,-\i*5.5mm) {\k};}
+    % guide lines:
+    \pgfonlayer{background}
+    \onslide<3->{\draw[line cap=round,line width=1.33pt,dfgray!14!white] (\k.east)++(1mm,0) -- ++(6*1.2cm+2mm,0);}
+    \endpgfonlayer
+  }
+  \onslide<4->{
+    \colorlet{@}{gray!80!white}
+  \only<5->{\colorlet{@}{gray!45!white}}
+  \Data[gray!80!white]{Writing}{0}{6}
+  \Data[@]{Research}{0}{.5}
+  \Data[@]{Static}{.5}{1} % \Data[@]{Structure}{2}{.5} \Data[@]{Structure}{3}{.5}
+  \Data[@]{Feature}{1.25}{.75}
+  \Data[gray!80!white]{Pointer}{2}{2.5} % \Data[@]{Verification}{4}{2}
+  \Data[@]{Evaluation}{4.5}{0.5}
+  \Data[@]{Finalize}{5}{1}}
+  \foreach\i in {1,...,7} {
+      \ifnum\i<7
+        \node[t,above] at (-1cm+\i*1.2cm+.6cm,0) {\only<5->{\ifnum\i=3\bfseries\else\color{hlgray}\fi}M\i};
+      \fi
+      % opacity away from 4 => lower
+      \pgfonlayer{background}
+      \draw[hlgray,opacity=.33,line width=1.33pt,line cap=round] (-1cm+\i*1.2cm,.5cm) -- ++(0,-4.75cm);
+      \endpgfonlayer
+  }
+  \onslide<5->{
+  \draw[paletteA,opacity=.8,line width=2pt,line cap=round] (6*1.2cm*0.430108,0) -- ++(0,-4.5cm) node[above right,outer sep=0pt,inner sep=0pt] (20) {\tiny\bfseries~~24.};
+  \node[below right,shadeA, outer sep=0pt, inner sep=0pt,yshift=-2pt] at(20.south west) {\tiny\bfseries~~May};
+  }
+\end{tikzpicture}}}\note[itemize]{%
+\item Doch wo stehe ich jetzt gerade?
+\item Aktive Phasen: \textbf{Implementation} und \textbf{Schreiben} der Bachelorarbeit
+\item Gut im Zeitplan
+}(1)%%
+\end{frame}
+
+\begin{frame}{Overview}
+
 \end{frame}
