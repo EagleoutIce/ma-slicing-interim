@@ -106,7 +106,7 @@ cat("Product:", prod, "\n")
       \item<18-> No existing static type inference
    \end{itemize}
 \end{onlyenv}
-   \item<5-> Slicing algorithm \onslide<20-|handout:5->{\After{algorithm}}\begin{onlyenv}<20-21|handout:4>
+   \item<5-> Slicing algorithm \onslide<22-|handout:5->{\After{algorithm}}\begin{onlyenv}<20-21|handout:4>
       \begin{itemize}
       \item<20-> Basic slicing algorithm by \citeauthor{weiser_program_1984}\textsuperscript{\color{gray}\cite{weiser_program_1984}}% TODO:  inter-procedural
       \item<21-> Slicing with data-flow is relatively simple
@@ -135,15 +135,19 @@ cat("Product:", prod, "\n")
 \end{tikzpicture}%
 \note[itemize]{%
 \item **CFlow**/AST
-   * AST Inkonsistent
+
+         \item AST Inkonsistent
+
 \item **Datenfluss**: Variablen
-   * hart, assign & evalq (function-reassignments, ...)
+
+         \item hart, assign & evalq (function-reassignments, ...)
+
 \item **Typ**-Informationen um besonders zu behandeln
-   * Typ-Informationen: Schwierig/Runtime
+         \item Typ-Informationen: Schwierig/Runtime
 \item **Slicing**-Algorithmus
-   * Mark **Weiser** fehlt nur Adaption auf konkreten DF-Graph/R [existiert aber noch nicht]
+         \item Mark **Weiser** fehlt nur Adaption auf konkreten DF-Graph/R [existiert aber noch nicht]
 \item [**Dynamic**: Bogdan Korel & Janusz Laski, erstmal ausführen | Paketversionen | tracen]
-\item Other slicers like JavaSlicer, Slicer4J, Slicer Generators wie Espresso (Java), AdaSlicer, |  Formals: Chisel...
+\item Other slicers like JavaSlicer, Slicer4J, Slicer Generators wie Espresso (Java), AdaSlicer;  Formals: Chisel...
 \item  DFlow Data Flow C/C++
 }(3)%
 \end{frame}
