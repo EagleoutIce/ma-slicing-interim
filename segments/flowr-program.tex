@@ -262,28 +262,28 @@
 \endpgfinterruptboundingbox
 }}
 
-\newsavebox\XUseGraph \savebox\XUseGraph{\WithGraph{\node[u] (@) at (0,0) {x\textsubscript{1}};}}
-\newsavebox\XDefGraph \savebox\XDefGraph{\WithGraph{\node[d] (@) at (0,0) {x\textsubscript{1}};}}
-\newsavebox\YUseGraph \savebox\YUseGraph{\WithGraph{\node[u] (@) at (0,0) {y\textsubscript{1}};}}
-\newsavebox\ZUseGraph \savebox\ZUseGraph{\WithGraph{\node[u] (@) at (0,0) {z\textsubscript{1}};}}
-\newsavebox\YDefGraph \savebox\YDefGraph{\WithGraph{\node[d] (@) at (0,0) {y\textsubscript{1}};}}
-\newsavebox\XBUseGraph \savebox\XBUseGraph{\WithGraph{\node[u] (@) at (0,0) {x\textsubscript{2}};}}
-\newsavebox\YBUseGraph \savebox\YBUseGraph{\WithGraph{\node[u] (@) at (0,0) {y\textsubscript{2}};}}
-\newsavebox\XYBUseGraph \savebox\XYBUseGraph{\WithGraph{\node[u] (@) at (0,0) {y\textsubscript{2}}; \node[u,below=2mm] at (@.south) {x\textsubscript{2}};}}
+\newsavebox\XUseGraph \savebox\XUseGraph{\WithGraph{\node[u] (@) at (0,0) {x\textsubscript{0}};}}
+\newsavebox\XDefGraph \savebox\XDefGraph{\WithGraph{\node[d] (@) at (0,0) {x\textsubscript{0}};}}
+\newsavebox\YUseGraph \savebox\YUseGraph{\WithGraph{\node[u] (@) at (0,0) {y\textsubscript{0}};}}
+\newsavebox\ZUseGraph \savebox\ZUseGraph{\WithGraph{\node[u] (@) at (0,0) {z\textsubscript{0}};}}
+\newsavebox\YDefGraph \savebox\YDefGraph{\WithGraph{\node[d] (@) at (0,0) {y\textsubscript{0}};}}
+\newsavebox\XBUseGraph \savebox\XBUseGraph{\WithGraph{\node[u] (@) at (0,0) {x\textsubscript{1}};}}
+\newsavebox\YBUseGraph \savebox\YBUseGraph{\WithGraph{\node[u] (@) at (0,0) {y\textsubscript{1}};}}
+\newsavebox\XYBUseGraph \savebox\XYBUseGraph{\WithGraph{\node[u] (@) at (0,0) {y\textsubscript{1}}; \node[u,below=2mm] at (@.south) {x\textsubscript{1}};}}
 \newsavebox\XYYBUseGraph \savebox\XYYBUseGraph{\WithGraph{%
-   \node[u] (y) at (0,0) {y\textsubscript{2}};
-   \node[u,below=2mm] (x) at (y.south) {x\textsubscript{2}};
-   \node[d,left=4mm] (z) at (current bounding box.west) {z\textsubscript{1}};
+   \node[u] (y) at (0,0) {y\textsubscript{1}};
+   \node[u,below=2mm] (x) at (y.south) {x\textsubscript{1}};
+   \node[d,left=4mm] (z) at (current bounding box.west) {z\textsubscript{0}};
    \draw[Kite-] (z) -- (x);
    \draw[Kite-] (z) -- (y);
    \coordinate(@) at(current bounding box.north);
 }}
 \newsavebox\FullUseGraph \savebox\FullUseGraph{\WithGraph{%
-   \node[u] (y) at (0,0) {y\textsubscript{2}};
-   \node[u,below=2mm] (x) at (y.south) {x\textsubscript{2}};
-   \node[d,left=4mm] (z) at (current bounding box.west) {z\textsubscript{1}};
-   \node[d,right=4mm] (xb) at(x.east) {x\textsubscript{1}};
-   \node[d,right=4mm] (yb) at(y.east) {y\textsubscript{1}};
+   \node[u] (y) at (0,0) {y\textsubscript{1}};
+   \node[u,below=2mm] (x) at (y.south) {x\textsubscript{1}};
+   \node[d,left=4mm] (z) at (current bounding box.west) {z\textsubscript{0}};
+   \node[d,right=4mm] (xb) at(x.east) {x\textsubscript{0}};
+   \node[d,right=4mm] (yb) at(y.east) {y\textsubscript{0}};
    \draw[Kite-] (z) -- (x);
    \draw[Kite-] (z) -- (y);
    \draw[densely dotted,Kite-] (x) -- (xb);
@@ -291,13 +291,6 @@
    \coordinate(@) at(current bounding box.north);
 }}
 
-\newsavebox\rDefGraph
-\savebox\rDefGraph{\tikz{%
-   \node[d] (@) at (0,0) {r\textsubscript{1}};
-\pgfinterruptboundingbox
-   \node[below=-.75mm,gray] at(@.south) {\scriptsize\strut Graph};
-\endpgfinterruptboundingbox
-}}
 
 
 
@@ -409,22 +402,6 @@ z <- x * y/*\onslide<1->*/
       \node[above,scale=.65] (@x) at(exprlist.north) {\usebox\BoxWithFull};
       \node[right,yshift=.5mm,scale=.65] at(@x.east) {\usebox\FullUseGraph};
    }%}
-   % }
-   % \onslide<13->{\OpaOn<14->{\node[above right=-1mm,yshift=-1mm,scale=.65] at(la2.north east) {\usebox\EmptyEnvBox};}}
-   % \onslide<14->{\OpaOn<15->{
-   %    \node[left,scale=.65] at(r.west) {\usebox\BoxWithr};
-   %    \node[below left,scale=.65] at(r.south west) {\usebox\rDefGraph};
-   % }}
-   % \onslide<15->{\OpaOn<16->{
-   %    \node[above right,scale=.65] at(if.east) {\usebox\EmptyEnvBox};
-   % }}
-   % \onslide<16->{\OpaOn<17->{
-   %    \node[above left,scale=.65] at(gt.north west) {\usebox\EmptyEnvBox};
-   %    \node[left,scale=.65] at (y1.west) {\usebox\EmptyEnvBox};
-   %    \node[below,scale=.65] at(a12.south) {\usebox\EmptyEnvBox};
-   %    \node[below,scale=.65] at(x2.south) {\usebox\EmptyEnvBox};
-   %    \node[below,scale=.65] at(y2.south) {\usebox\EmptyEnvBox};
-   % }}
 \endpgfinterruptboundingbox
 \end{forest}
 \end{lrbox}\usebox\FinalDataFlow
@@ -479,6 +456,7 @@ z <- x * y/*\onslide<1->*/
    \end{itemize}%
 \note[itemize]{%
 \item TODO
+\item CRAN: "The Comprehensive R Archive Network"
 }(1)%
 \end{frame}
 
