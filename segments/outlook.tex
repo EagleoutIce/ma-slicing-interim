@@ -7,23 +7,23 @@
 }
 \begin{frame}{The Plan}
 \vspace*{-6mm}% completed: 80 days future: 106 days
-\frametitle<-5|handout:1>{The Plan}
-\frametitle<6-|handout:2>{The Reality}
-\begin{onlyenv}<-5|handout:1>
+\frametitle<-4|handout:1>{The Plan}
+\frametitle<5-|handout:2>{The Reality}
+\begin{onlyenv}<-4|handout:1>
 \vspace*{-2mm}\only<2->{\resizebox{.9\linewidth}!{\begin{tikzpicture}[t/.style={gray},xscale=1.15]
   \foreach[count=\i] \k in {Writing,Research,Static,Feature,Pointer,Evaluation,Finalize} {
     \colorlet{@}{gray}
-    \only<5->{\colorlet{@}{hlgray!62!white}}
+    \only<4->{\colorlet{@}{hlgray!62!white}}
     \ifnum\i=1\colorlet{@}{gray}\fi\ifnum\i=5\colorlet{@}{gray}\fi
-    \onslide<3->{\node[t,@,left] (\k) at (0,-\i*5.5mm) {\k};}
+    \onslide<2->{\node[t,@,left] (\k) at (0,-\i*5.5mm) {\k};}
     % guide lines:
     \pgfonlayer{background}
-    \onslide<3->{\draw[line cap=round,line width=1.33pt,dfgray!14!white] (\k.east)++(1mm,0) -- ++(6*1.2cm+2mm,0);}
+    \onslide<2->{\draw[line cap=round,line width=1.33pt,dfgray!14!white] (\k.east)++(1mm,0) -- ++(6*1.2cm+2mm,0);}
     \endpgfonlayer
   }
-  \onslide<4->{
+  \onslide<3->{
     \colorlet{@}{gray!80!white}
-  \only<5->{\colorlet{@}{gray!45!white}}
+  \only<4->{\colorlet{@}{gray!45!white}}
   \Data[gray!80!white]{Writing}{0}{6}
   \Data[@]{Research}{0}{.5}
   \Data[@]{Static}{.5}{1} % \Data[@]{Structure}{2}{.5} \Data[@]{Structure}{3}{.5}
@@ -33,20 +33,20 @@
   \Data[@]{Finalize}{5}{1}}
   \foreach\i in {1,...,7} {
       \ifnum\i<7
-        \node[t,above] at (-1cm+\i*1.2cm+.6cm,0) {\only<5->{\ifnum\i=3\bfseries\else\color{hlgray}\fi}M\i};
+        \node[t,above] at (-1cm+\i*1.2cm+.6cm,0) {\only<4->{\ifnum\i=3\bfseries\else\color{hlgray}\fi}M\i};
       \fi
       % opacity away from 4 => lower
       \pgfonlayer{background}
       \draw[hlgray,opacity=.33,line width=1.33pt,line cap=round] (-1cm+\i*1.2cm,.5cm) -- ++(0,-4.75cm);
       \endpgfonlayer
   }
-  \onslide<5->{
+  \onslide<4->{
   \draw[paletteA,opacity=.8,line width=2pt,line cap=round] (6*1.2cm*0.430108,0) -- ++(0,-4.5cm) node[above right,outer sep=0pt,inner sep=0pt] (20) {\tiny\bfseries~~24.};
   \node[below right,shadeA, outer sep=0pt, inner sep=0pt,yshift=-2pt] at(20.south west) {\tiny\bfseries~~May};
   }
 \end{tikzpicture}}}
 \end{onlyenv}
-\begin{onlyenv}<6-|handout:2>
+\begin{onlyenv}<5-|handout:2>
 \vspace*{-2mm}\resizebox{.9\linewidth}!{\begin{tikzpicture}[t/.style={gray},xscale=1.15,yscale=.85]
   \foreach[count=\i] \k in {Writing,Research,Normalize,Data-Flow,Static,Feature,Pointer,Evaluation,Finalize} {
     \colorlet{@}{gray}
