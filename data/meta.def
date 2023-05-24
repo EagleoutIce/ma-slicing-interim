@@ -3,10 +3,10 @@
 
 \title{Constructing a Static Program Slicer}
 \newsavebox\TitleSliceBox
-\subtitle{Specifically for \texorpdfstring{\,\setbox\TitleSliceBox=\hbox{R~Pro\kern5pt\relax grams}\phantom{\copy\TitleSliceBox}\llap{\tikz[baseline=(k.base)]{%
+\subtitle{Specifically for \texorpdfstring{\,~\setbox\TitleSliceBox=\hbox{R~Pro\kern5pt\relax grams}\phantom{\copy\TitleSliceBox}\llap{\tikz[baseline=(k.base)]{%
 \packtitlenode0k
 \def\kA{300}\def\kB{120}\def\kS{-.5\wd\TitleSliceBox-5pt}
-\scope[xshift=-\kS]\packtitlenode0x
+\scope[xshift=1.25*\kS]\packtitlenode0x
 \clip (x.south west)--(x.\kA)--(x.\kB)-| cycle;
 \packtitlenode1x
 \endscope
@@ -18,9 +18,7 @@
 % cutline
 \fill[btdm@border@down,rounded corners=1.5pt] ([yshift=4pt,xshift=1.5pt]y.\kA)--([yshift=-4pt]y.\kB)--++(-3pt,0)--([xshift=-1.5pt,yshift=4pt]y.\kA) -- cycle;
 \fill[btdm@border@down,rounded corners=1.5pt] ([yshift=4pt,xshift=-1.5pt]x.\kA)--([yshift=-4pt,xshift=-1.5pt]x.\kB)--++(3pt,0)--([xshift=1.5pt,yshift=4pt]x.\kA) -- cycle;
-}\kern-.5\wd\TitleSliceBox}\;~}{R~Programs}}
-% \subtitle{Parallelizing and\texorpdfstring{\\}{\space}Distributing programs with the Shell}
-% \institute{\textsc{ccpdp}, Universität Ulm}
+}\kern-.55\wd\TitleSliceBox}\;~}{R~Programs}}
 
 \author[F.~Sihler]{Florian Sihler}
 % pdfpcnotes compatiblilty
