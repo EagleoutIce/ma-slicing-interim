@@ -14,7 +14,7 @@
     lecture-bibliography={biber,style=numeric-comp},%
     lecture-links={patchurl},%
     lecture-registers={disable},% would interfere with beamer
-    beamer-latex-pdfpc-notes={disablemarkdown=false,showannot=false,}
+    beamer-latex-pdfpc-notes={disablemarkdown=false,showannot=false,fontsize=15}
 ]{lithie-util}
 \usepackage[detect-all,binary-units]{siunitx}
 
@@ -72,6 +72,12 @@
   \begin{tikzpicture}[overlay,remember picture]%
     \node[below left=3mm] at(current page.north east) {\includegraphics[height=1.5cm]{logos/flowR-soft.pdf}};
   \end{tikzpicture}%
+\note[itemize]{%
+\item Hallo und Herzlich Willkommen
+\item **Zwischenpräsentation**
+\item Masterarbeit
+\item **Statischer Program Slicer für R Code**
+}(0.5)%
 }
 
 \def\HStrut{\vphantom{\{\}g}}

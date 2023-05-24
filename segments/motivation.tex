@@ -13,18 +13,20 @@
 \end{tikzpicture}
 \begin{tikzpicture}[@O]
    \node[FCite] at(current page.south west) {%
-      \only<2->{\cite{pypl2023} \link{https://pypl.github.io/PYPL.html}{https://pypl.github.io/}}%
-      \only<3->{\\\cite{rProjectJournal} \link{https://journal.r-project.org/}{https://journal.r-project.org/}}%
+      \only<5->{\cite{rProjectComprehensiveArchive} \link{https://cran.r-project.org/}{https://cran.r-project.org/}}
       \only<4->{\\\cite{archiveOracleAnnounces} \link{https://web.archive.org/web/20120211034626/https://www.oracle.com/us/corporate/press/1515738}{https://www.oracle.com/us/corporate/press/1515738 [archived]}}
-      \only<5->{\\\cite{rProjectComprehensiveArchive} \link{https://cran.r-project.org/}{https://cran.r-project.org/}}
+      \only<3->{\\\cite{rProjectJournal} \link{https://journal.r-project.org/}{https://journal.r-project.org/}}%
+      \only<2->{\\\cite{pypl2023} \link{https://pypl.github.io/PYPL.html}{https://pypl.github.io/}}%
    };
 \end{tikzpicture}\note[itemize]{%
-\item Rang 7 in PYPL (PopularitY of Programming Language) mit 4.34\%, hinter PHP mit 5.5\%; vor TypeScript mit 2.88\%. Top: Python mit 27.27\%
+\item **Warum überhaupt R**
+\item Rang 7 in PYPL (PopularitY of Programming Language) mit 4.34\%, *hinter PHP mit 5.5\%; vor TypeScript mit 2.88\%. Top: Python mit 27.27\%*
 \item Rang 16 in TIOBE mit 0.82\%
 \item Eigenes Journal mit JIF (Journal Impact Factor) von 1.673 (2021); 2020 noch 3.984 (weitere Konferenzen wie useR! auch 2023)
 \item Viele Nutzer: Oracle 2012 sagt mehr als 2 Millionen (mehr als 2 Mio Downloads des base Paket im letzten Monat).
-\item Viel mehr: Google spricht von "sehr großer Code-Base" (mehr als 500 aktive Nutzer UserR! 2012) % https://blog.revolutionanalytics.com/2012/06/user-2012-highlights.html
+\item Viel mehr: Google spricht von "riesen Code-Base" (mehr als 500 aktive Nutzer UserR! 2012) % https://blog.revolutionanalytics.com/2012/06/user-2012-highlights.html
 \item CRAN: "The Comprehensive R Archive Network"
+\item **Grosse, aktive Community**
 }(2)%
 \end{frame}
 \addtocategory{@hide}{pypl2023,rProjectJournal,archiveOracleAnnounces,rProjectComprehensiveArchive}
@@ -88,8 +90,11 @@
 \end{tikzpicture}
 \end{columns}
 \note[itemize]{%
-\item RStudio von posit (hauptsächlich in Java/C++)
-\item TODO: es gibt auch andere kleinere wie reformatter, rclean, ... optimizer rco...
+\item **RStudio** von posit (hauptsächlich in Java/C++)
+\item **R Languageserver** in R (mit Extensions für mehrere IDEs)
+\item **Lintr**: Style & Syntax Checks (unused packages, ...)
+\item **CodeDepends** Dependency Analysis
+\item Es gibt auch andere wie reformatter ("styler"), rclean, optimizer rco (hat constant folding aber sehr simpel)...
 }(4)%
    % optimizr, tidyverse, RDocumentation, CodeDepends/CodeTools, R language server
 \end{frame}
