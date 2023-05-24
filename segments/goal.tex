@@ -50,7 +50,11 @@ cat("Product:", prod, "\n")
 \end{tikzpicture}\end{lrbox}\usebox\FinalSlicingStage\hfill\null
 \global\setbox\FinalSlicingStage=\box\FinalSlicingStage
 \note[itemize]{%
-\item TODO
+\item Wir haben R Code
+\item Was er genau macht nicht wichtig
+\item **Wichtige Variablen** sum & prod
+\item Wollen wissen warum **sum** in **Zeile 10** den Wert hat, den es hat
+\item **Prod unwichtig**
 }(1)%
 \end{frame}
 
@@ -130,9 +134,16 @@ cat("Product:", prod, "\n")
 }
 \end{tikzpicture}%
 \note[itemize]{%
-\item TODO
-\item TODO: Otherwise: Nothing: no-one supoprts assigns etc.
-\item TODO: other Slicers like JavaSlicer, Slicer4J, Slicer Generators wie Espresso (Java), AdaSlicer, Formals: Chisel...
-\item TODO: DFlow Data Flow C/C++
-}(1)%
+\item **CFlow**/AST
+   * AST Inkonsistent
+\item **Datenfluss**: Variablen
+   * hart, assign & evalq (function-reassignments, ...)
+\item **Typ**-Informationen um besonders zu behandeln
+   * Typ-Informationen: Schwierig/Runtime
+\item **Slicing**-Algorithmus
+   * Mark **Weiser** fehlt nur Adaption auf konkreten DF-Graph/R [existiert aber noch nicht]
+\item [**Dynamic**: Bogdan Korel & Janusz Laski, erstmal ausführen | Paketversionen | tracen]
+\item Other slicers like JavaSlicer, Slicer4J, Slicer Generators wie Espresso (Java), AdaSlicer, |  Formals: Chisel...
+\item  DFlow Data Flow C/C++
+}(3)%
 \end{frame}
