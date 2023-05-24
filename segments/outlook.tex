@@ -84,8 +84,10 @@
 \end{onlyenv}
 \note[itemize]{%
 \item Doch wo stehe ich jetzt gerade?
-\item Aktive Phasen: \textbf{Implementation} und \textbf{Schreiben} der Bachelorarbeit
-\item Gut im Zeitplan
+\item Das war der Plan
+\item Realität: Normalisierung und Datenflussanalyse komemn dazu
+\item Aktive Phasen: \textbf{Normalize/DF} und \textbf{Pointer}
+\item Pointer ist trennen von Array-Komponenten/Data-Frames/in R6 Reference classes schauen etc.
 }(1)%%
 \end{frame}
 
@@ -96,10 +98,10 @@
 \newsavebox\OurGoalBox \savebox\OurGoalBox{~~~~\resizebox{6cm}!{\usebox\FinalSlicingStage}~}
 \StoreOverview{a/.style={},b/.style={},c/.style={},d/.style={},e/.style={},f/.style={}}
 \newsavebox\OurOverviewBox \savebox\OurOverviewBox{~~~\resizebox{6cm}!{\usebox\Overview}~~~}
-\newsavebox\OurDataflow \savebox\OurDataflow{~~~\resizebox{4.5cm}!{\usebox\FinalDataFlow}~~~}
+\newsavebox\OurDataflow \savebox\OurDataflow{~~~\resizebox{4.25cm}!{\usebox\FinalDataFlow}~~~}
 \newsavebox\OurFeature \savebox\OurFeature{~~~\resizebox{5cm}!{\includegraphics{statistics/stat-assignments-I-.pdf}%
-\quad\includegraphics{statistics/stat-assignments-II-.pdf}%
-\quad\includegraphics{statistics/stat-assignments-=.pdf}}~~~}
+\qquad\includegraphics{statistics/stat-assignments-II-.pdf}%
+\qquad\includegraphics{statistics/stat-assignments-=.pdf}}~~~}
 \begin{frame}{Overview}
 \begin{tikzpicture}
   \onslide<2->{\draw[path image={\hyperlink{@Goal}{\usebox\OurGoalBox}},rounded corners=2pt,draw] (0,0) rectangle ++(\wd\OurGoalBox,\ht\OurGoalBox+\dp\OurGoalBox);
@@ -113,6 +115,12 @@
 
   \onslide<5->{\draw[path image={\hyperlink{@Feature}{\usebox\OurFeature}},rounded corners=2pt,draw] (\wd\OurGoalBox+1cm,-\ht\OurGoalBox-\dp\OurGoalBox-1cm) rectangle ++(\wd\OurOverviewBox,\ht\OurGoalBox+\dp\OurGoalBox);
   \node[below] at(\wd\OurGoalBox+1cm+0.5\wd\OurOverviewBox,-\ht\OurGoalBox-\dp\OurGoalBox-1cm) {\textbf{Features}};}
-
 \end{tikzpicture}
+\note[itemize]{%
+\item Das Ziel und was wir dafür brauchen (AST, DF, Types, Slicing Algorihtmus)
+\item flowR + Phasen
+\item Besonders: Datenfluss
+\item Features und was wir daraus lernen können
+\item **Überleitung Bibliographie und Fragen**
+}(1)%%
 \end{frame}

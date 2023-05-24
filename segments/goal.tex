@@ -135,19 +135,16 @@ cat("Product:", prod, "\n")
 \end{tikzpicture}%
 \note[itemize]{%
 \item **CFlow**/AST
-
-         \item AST Inkonsistent
-
 \item **Datenfluss**: Variablen
-
-         \item hart, assign & evalq (function-reassignments, ...)
-
 \item **Typ**-Informationen um besonders zu behandeln
-         \item Typ-Informationen: Schwierig/Runtime
 \item **Slicing**-Algorithmus
-         \item Mark **Weiser** fehlt nur Adaption auf konkreten DF-Graph/R [existiert aber noch nicht]
+\item
+\item AST Inkonsistent
+\item Datenfluss: hart, assign & evalq (function-reassignments, ...)
+\item Typ-Informationen: Schwierig/Runtime
+\item Slicing-Algorithmus: Mark **Weiser** [1984 | proposed: 1979] fehlt nur Adaption auf konkreten DF-Graph/R [existiert aber noch nicht]
 \item [**Dynamic**: Bogdan Korel & Janusz Laski, erstmal ausführen | Paketversionen | tracen]
-\item Other slicers like JavaSlicer, Slicer4J, Slicer Generators wie Espresso (Java), AdaSlicer;  Formals: Chisel...
+\item Other Slicers like JavaSlicer, Slicer4J, Slicer Generators wie Espresso (Java), AdaSlicer, |  Formals: Chisel...
 \item  DFlow Data Flow C/C++
 }(3)%
 \end{frame}

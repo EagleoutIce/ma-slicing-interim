@@ -135,7 +135,10 @@
 \begin{tikzpicture}[overlay,remember picture]
    \onslide<2->{\node[above right,yshift=\btdmfootheight,gray,font=\tiny] at (current page.south west) {[R]~\url{https://www.r-project.org/logo/}};}
    % \onslide<9->{\node[above right,yshift=\btdmfootheight,gray,font=\tiny] at(current page.south west) {\cite{weiser_program_1984}~\citeauthor{weiser_program_1984}, \citetitle{weiser_program_1984} (\citeyear{weiser_program_1984})};}
-\end{tikzpicture}
+\end{tikzpicture}\note[itemize]{%
+\item Rein > Parsing > Normalization > Data-Flow > Slicing > Raus
+\item flowR flow-R (useR, purrr [Funktional], lintr,~\ldots)
+}(1.5)%
 \end{frame}
 
 
@@ -218,8 +221,10 @@
    \onslide<1->{\node[below left=5mm,xshift=1mm,scale=.7] at(current page.north east) {\usebox\Overview};}
 \end{tikzpicture}%
 \note[itemize]{%
-\item TODO: Standard ist lange nicht vollständig
-\item R Language Definition: 60 Seiten
+% \item TODO:
+\item IF links: R AST - rechts normalisiert
+\item Muss Kinder nicht mehr betrachten
+\item R Language Definition: 60 Seiten [Standard lange nicht vollständig]
 \item Inkonsistenzen bei for-Schleifen, keine Details zu Zuweisungen
 }(1)%
 \end{frame}
@@ -315,7 +320,7 @@ z <- x * y/*\onslide<1->*/
          [\Content{symbol}{x}, edge label={node[K=above,sloped] {target}}]
          [\Content{number}{21}, edge label={node[K=above,sloped] {source}}]
       ]
-      [\Content{assignment}{\LeftArrow}, edge label={node[K=right] {2}}
+      [\Content{assignment}{\LeftArrow}, edge label={node[K=right] {2}},before computing xy={s/.average={s}{siblings}},
          [\Content{symbol}{y}, edge label={node[K=above,sloped] {target}}]
          [\Content{number}{2}, edge label={node[K=above,sloped] {source}}]
       ]
@@ -338,7 +343,7 @@ z <- x * y/*\onslide<1->*/
          [\MarkAt{8,9}{x}, edge label={node[K=above,sloped] {target}},name=x1]
          [\MarkAt{10}{21}, edge label={node[K=above,sloped] {source}},name=21]
       ]
-      [\MarkAt{12,13}{\LeftArrow}, edge label={node[K=right] {2}},name=la2
+      [\MarkAt{12,13}{\LeftArrow}, edge label={node[K=right] {2}},name=la2,before computing xy={s/.average={s}{siblings}}
          [y, edge label={node[K=above,sloped] {target}},name=y1]
          [2, edge label={node[K=above,sloped] {source}},name=2]
       ]
@@ -415,6 +420,12 @@ z <- x * y/*\onslide<1->*/
    \onslide<1->{\node[below left=5mm,xshift=1mm,scale=.7] at(current page.north east) {\usebox\Overview};}
 \end{tikzpicture}%
 \note[itemize]{%
+\item Erst Code
+\item Normalisierter AST
+\item Vereinfachung für Übersicht
+\item Zuerst Environments **Top**, **Empty**, **Mit Parent** | **Current**
+\item Wird nach unten durchgereicht (lexical)
+\item Fold nach oben [Hylomorphism]
 \item SSA: Static single-assignment form
 }(1)%
 \end{frame}
@@ -428,7 +439,7 @@ z <- x * y/*\onslide<1->*/
          \item<4-> \bR{assign("a", 1)}, \bR{b <- "a"; assign(b, 1)}
          \item<5-> \bR[morekeywords={[2]{setGeneric}}]{setGeneric("props", function(object) object)}
       \end{itemize}
-      \item<6-> Environments and scopes can be changed manually.
+      \item<6-> Environments can be changed manually
 %       \solsetmintedstyle{plain}\lstfs{10}%
 % \begin{minted}[escapeinside={/*}{*/},aboveskip=0pt]{R}
 % /*\onslide<7->*/x <- new.env(); evalq(a <- 1, envir=x); evalq(a, envir=x)/*\onslide<1->*/
@@ -441,7 +452,11 @@ z <- x * y/*\onslide<1->*/
    \onslide<1->{\node[below left=5mm,xshift=1mm,scale=.7] at(current page.north east) {\usebox\Overview};}
 \end{tikzpicture}%
 \note[itemize]{%
-\item TODO: Package versionen sind unbekannt/nicht angegeben,
+\item Daten-Modification
+\item Environment changes
+\item Funktionsveränderung (body, environment, formals)
+\item Different class systems (**S3** Classes [class Attribute], **S4** [Methoden und Generics], **R6** Reference Classes [Baut auf S4 auf, Methoden gehören zu Objekten, Objekte sind veränderbar], **RC/R5** ist alt/ersetzt)
+\item Package Versionen sind unbekannt/nicht angegeben
 }(1)%
 \end{frame}
 
@@ -450,15 +465,16 @@ z <- x * y/*\onslide<1->*/
       \item<2-> \textit{Assumption:} \say{UserRs write different code from package authors.}\bigskip
       \begin{center}
             \begin{tabular}{c@{\hspace*{3.5em}}c}
-               \onslide<3->{UseRs} & \onslide<3->{Package Authors} \medskip\\
-               \onslide<4->{published scripts in social science} & \onslide<5->{top 500 CRAN packages} \\
-               \onslide<6->{\num{4230} files} & \onslide<7->{\num{25\,691} files}
+               \onslide<3->{UseRs} & \onslide<4->{Package Authors} \medskip\\
+               \onslide<3->{published scripts in social science} & \onslide<4->{top 500 CRAN packages} \\
+               \onslide<3->{\num{4230} files} & \onslide<4->{\num{25\,691} files}
             \end{tabular}
       \end{center}
    \end{itemize}%
 \note[itemize]{%
-\item TODO
-\item CRAN: "The Comprehensive R Archive Network"
+\item UseRs (R-Benutzer) vs. Package Authors
+\item Was in Paketen genutzt wird kann man auch erstmal nur fest unterstützen
+\item [CRAN: "The Comprehensive R Archive Network"]
 }(1)%
 \end{frame}
 
@@ -471,6 +487,15 @@ z <- x * y/*\onslide<1->*/
    % ~\onslide<5->{\includegraphics{statistics/stat-assignments--I.pdf}}%
    % ~\onslide<6->{\includegraphics{statistics/stat-assignments--II.pdf}}%
    % ~\onslide<7->{\includegraphics{statistics/stat-assignments-:=.pdf}}
+\note[itemize]{%
+   \item Links user, rechts package code
+   \item Loakle empfohlene Zuweisung
+   \item X-Achse prozentual, wie viele der Dateien das verwenden
+   \item Y-Achse: Anzahl/Dateilänge verhälts. Absolute Zahlen sinnd ähnlich. Unterster Balken für Folien besonders: Gar nicht benutzt.
+   \item **Bild 1**: Kein unterschied, nur stark untrschiedliche ausreisser
+   \item **Bild 2:** nutzen beide fast gar nicht, user code: eine Dateim package code etwas mehr aber selten
+   \item **Bild 3:** viel mehr bei Usersn
+}(1)%
 \end{frame}
 
 \def\I#1{\quad\textcolor{gray}{\footnotesize#1}}
@@ -488,7 +513,12 @@ z <- x * y/*\onslide<1->*/
       \item<6-> \T{.C} and \T{.Fortran} are used seldomly
    \end{itemize}
    \note[itemize]{%
-   \item Most used packages sind unterschiedlich in Paketen
+   \item Most used packages sind unterschiedlich in Paketen (Users: ggplot, R: stats/utils/withr)
+   \item setGeneric/assign **reflective functions** quas nur in Paket-Code da aber oft.
+   \item Namespaces zum Glück nur selten (andere Paket ändern **LaTeX** macht das gerne, **hyperref**)
+   \item Datentypen meist durch konstante (Objekte, Spaltennamen, ...)
+   \item .C/.Fortran selten => pessimistisch abstahieren und sagen "kann alles abhänigg sein"
+   \item .Primitive nur in ein paar Paketen da aber viel, ...
    }(1)%
    % TODO: 2-3 interesting findings (meistgenutzte Pakete,~\ldots)
 \end{frame}
