@@ -1,8 +1,11 @@
 \input{data/preamble}
-
+\makeatletter
+\def\btdm@inserttotalframenumber{16}%
 \begin{document}
 \setcounter{btdm@sectioncount}{5}% lock scrolling
+\def\inserttotalframenumber{16}% TODO: hard lock
 \titleframe<2>
+\gdef\btdm@inserttotalframenumber{16}%
 
 \input{segments/motivation.tex}
 
