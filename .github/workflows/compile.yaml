@@ -21,14 +21,14 @@ jobs:
     - name: get pu for preview
       run: sudo apt install poppler-utils
     - name: use make docker to do the magic
-      run: cd slides/ && make docker
+      run: make docker
     - name: 'compiling the pdfs'
       run: |
         ./run-docker
         pdftoppm -png -f 1 -l 1 ./build/noanim_ma-interim-r-slicing.pdf preview
     - name: Commit
       run: |
-        cp slides/*.pdf ./
+        cp build/*.pdf ./
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action"
         git add -f "./*.pdf" "**/preview*.png"
