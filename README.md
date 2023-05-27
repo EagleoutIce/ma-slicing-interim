@@ -4,7 +4,8 @@
 
 Waddle waddle!
 
-* Animated Version ([here](https://media.githubusercontent.com/media/EagleoutIce/ma-slicing-interim/gh-pages/ma-interim-r-slicing.pdf) or [here](https://github.com/EagleoutIce/ma-slicing-interim/blob/gh-pages/ma-interim-r-slicing.pdf))
-* Not-Animated Version (with enough extra slides to follow the original animations: [here](https://media.githubusercontent.com/media/EagleoutIce/ma-slicing-interim/gh-pages/noanim_ma-interim-r-slicing.pdf) or [here](https://github.com/EagleoutIce/ma-slicing-interim/blob/gh-pages/noanim_ma-interim-r-slicing.pdf))
+* Animated Version with speaker notes: [here](https://media.githubusercontent.com/media/EagleoutIce/ma-slicing-interim/gh-pages/ma-interim-r-slicing.pdf) or [here](https://github.com/EagleoutIce/ma-slicing-interim/blob/gh-pages/ma-interim-r-slicing.pdf)
+* Not-Animated Version (with enough extra slides to follow the original animations): [here](https://media.githubusercontent.com/media/EagleoutIce/ma-slicing-interim/gh-pages/noanim_noannot_ma-interim-r-slicing.pdf) or [here](https://github.com/EagleoutIce/ma-slicing-interim/blob/gh-pages/noanim_noannot_ma-interim-r-slicing.pdf)
+* Not-Animated Version with speaker notes: [here](https://media.githubusercontent.com/media/EagleoutIce/ma-slicing-interim/gh-pages/noanim_ma-interim-r-slicing.pdf) or [here](https://github.com/EagleoutIce/ma-slicing-interim/blob/gh-pages/noanim_ma-interim-r-slicing.pdf)
 
 [<img src="https://github.com/EagleoutIce/ma-slicing-interim/blob/gh-pages/preview-01.png?raw=true" width="650"/>](https://media.githubusercontent.com/media/EagleoutIce/ma-slicing-interim/gh-pages/noanim_ma-interim-r-slicing.pdf)
