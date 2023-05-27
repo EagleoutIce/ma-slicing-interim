@@ -9,7 +9,8 @@ DEPENDENCIES           := ${SLIDES_TEX} data/preamble.tex $(shell compgen -G "*.
 # for each 'source_*' we create n pdf versions which will be prepared here
 SLIDES_BASE            := $(basename $(SLIDES_TEX:source_%=%))
 SLIDES_VARIANTS_NOANIM := $(addprefix noanim_, ${SLIDES_BASE})
-SLIDES_VARIANTS_ALL    := ${SLIDES_VARIANTS_NOANIM} ${SLIDES_BASE} # $(addsuffix -dark,${SLIDES_VARIANTS_NOANIM})
+SLIDES_VARIANTS_NOANIM_NOANNOT := $(addprefix noanim_noannot_, ${SLIDES_BASE})
+SLIDES_VARIANTS_ALL    := ${SLIDES_VARIANTS_NOANIM_NOANNOT} ${SLIDES_VARIANTS_NOANIM} ${SLIDES_BASE} # $(addsuffix -dark,${SLIDES_VARIANTS_NOANIM})
 SLIDESPDF              := $(addsuffix .pdf,${SLIDES_VARIANTS_ALL})
 CLEANTARGETS           := log aux out ind bbl blg lof lot toc idx acn acr alg glg glo gls fls fdb_latexmk auxlock md5 SATZE ZSM UB TOP listing upa ilg TOPIC DEFS vrb snm nav atfi run.xml bcf
 
@@ -26,6 +27,10 @@ compile: ${SLIDESPDF}
 
 # for each pdf we set the filename similarly
 %.pdf: __FILENAME = $(addsuffix .tex, $(basename $@))
+
+noanim_noannot_%.pdf: __FILECONTENT = \\PassOptionsToClass{handout}{beamer}\\PassOptionsToPackage{disable}{beamer-latex-pdfpc-notes}\\input{source_$*.tex}
+noanim_noannot_%.pdf: ${DEPENDENCIES}
+	$(produce)
 
 # this are mere wrapper rules to be used with the common producer below
 # with $* we get the stem (whatever the '%' did expand to)
